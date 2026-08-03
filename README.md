@@ -50,7 +50,7 @@ Crear una aplicación de simulación que permita:
 
 ## Roadmap
  
-- [ ] Fase 1 — Definición y diseño (interfaz, modelo físico, alcance del MVP)
+- [x] Fase 1 — Definición y diseño (interfaz, modelo físico, alcance del MVP)
 - [ ] Fase 2 — Motor de físicas y vehículo controlable
 - [ ] Fase 3 — Interfaz gráfica y HUD
 - [ ] Fase 4 — Asistente IA (v1, basado en reglas)
