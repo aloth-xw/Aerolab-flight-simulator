@@ -81,6 +81,7 @@ Consulta el [Game Design Document completo](docs/GDD.md) para el detalle de arqu
 ├── .gitignore               # .gitignore estándar de Unity
 ├── docs/                    # Documentación, memoria del proyecto, diseño
 │   ├── GDD.md               # Game Design Document completo
+│   ├── TDD.md               # Technical Design Document completo
 │   ├── media/                # Capturas/mockups referenciados en el GDD
 │   └── memoria-certamen.md
 ├── media/                   # Capturas y vídeo de demo para el certamen
