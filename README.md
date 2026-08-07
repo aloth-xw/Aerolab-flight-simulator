@@ -6,7 +6,8 @@ Simulador de vuelo y lanzamiento de cohetes de código abierto pensado para estu
 - [Objetivo](#-objetivo)
 - [Estado actual](#-estado-actual)
 - [Características](#-características)
-- [Arquitectura y stack tecnológico](#-arquitectura-y-stack-tecnológico)
+- [Arquitectura de software](#-arquitectura-de-software)
+- [Tecnologías utilizadas](#-tecnologías-utilizadas)
 - [Estructura del repositorio](#-estructura-del-repositorio)
 - [Instalación y ejecución](#-instalación-y-ejecución)
 - [Roadmap](#-roadmap)
@@ -58,17 +59,19 @@ Consulta el [Game Design Document completo](docs/GDD.md) para el detalle de arqu
 - Multijugador/comparativa de resultados.
 
 
-## Arquitectura y stack tecnológico
+## Arquitectura de software
  
+
+
+## tecnologías utilizadas
 - **Motor:** Unity (versión LTS más reciente, ej. Unity 6 LTS / 2022 LTS)
 - **Lenguaje:** C#
-- **Física:** Unity Physics (Rigidbody) + modelo simplificado propio de aerodinámica/cohetería (empuje, arrastre, sustentación) sobre `FixedUpdate`
+- **Física:** La simulación utiliza un modelo físico propio para calcular las fuerzas aerodinámicas (sustentación, resistencia y empuje). Unity (Rigidbody) se emplea únicamente como integrador y para la representación dentro del motor.
 - **Render Pipeline:** URP (Universal Render Pipeline), para mantener buen rendimiento en equipos modestos
 - **UI:** UI Toolkit o Canvas/uGUI para el HUD
 - **IA / Asistente:** sistema basado en reglas (máquina de estados / árbol de decisión en C#) para el MVP; posible integración con API de LLM en fases posteriores
 - **Control de versiones:** Git + GitHub (con `.gitignore` específico de Unity)
 - **Gestión de tareas:** GitHub Projects / Issues
-
 
   ## Estructura del repositorio
  
@@ -83,8 +86,19 @@ Consulta el [Game Design Document completo](docs/GDD.md) para el detalle de arqu
 ├── media/                   # Capturas y vídeo de demo para el certamen
 ├── Assets/                  # Proyecto Unity
 │   ├── Scripts/
-│   │   ├── Vehicles/        # Control y física de aviones/cohetes
-│   │   ├── Physics/         # Modelo de físicas de vuelo (empuje, arrastre...)
+│   │   ├── Aircraft/
+│   │      ── PhysicsBody.cs
+│   │       ── Wing.cs
+│   │       ── Airfoil.cs
+│   │       ── Engine.cs
+│   │       ── FlightControls.cs
+│   └── AircraftSystems.cs        # Control y física de aviones/cohetes
+│   │  ├── Physics/
+│   │  │   ├── PhysicsEngine.cs
+│   │  │   ├── Aerodynamics.cs
+│   │  │   ├── Propulsion.cs
+│   │  │   ├── Integrator.cs
+│   │  │   └── Atmosphere.cs        # Modelo de físicas de vuelo (empuje, arrastre...)
 │   │   ├── AI/               # Lógica del asistente IA
 │   │   ├── UI/                # Interfaz gráfica y HUD
 │   │   └── Core/              # GameManager, input, utilidades generales
