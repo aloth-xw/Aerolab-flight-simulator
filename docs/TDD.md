@@ -1,17 +1,35 @@
 # Technical Design Document
 
-## Objetivos
+## 1. Objetivo
 
-## Arquitectura
+## 2. Arquitectura
 
-## Modelo de clases
+## 3. Sistemas de coordenadas
 
-## Physics Engine
+## 4. Modelo físico
 
-## Flujo de actualización
+### 4.1 Atmósfera
 
-## Modelo aerodinámico
+### 4.2 Viento relativo
 
-## Decisiones de diseño
+### 4.3 Ángulo de ataque
 
-## Futuras ampliaciones
+### 4.4 Sustentación
+
+### 4.5 Resistencia
+
+### 4.6 Empuje
+
+### 4.7 Gravedad
+
+## 5. Modelo de clases
+
+## 6. PhysicsEngine
+
+## 7. Bucle de simulación
+
+## 8. Controles de vuelo
+
+## 9. Decisiones de diseño
+
+## 10. Futuras ampliaciones
