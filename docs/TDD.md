@@ -18,7 +18,15 @@ Aerolab utiliza un modelo físico simplificado para representar el comportamient
 ### 3.1 Atmósfera
 
  Empezamos con ρ=cte
- Calculamos viento relativo con Vrel​=Vaircraft​−Vwind​
+ Calculamos viento relativo con
+ 
+  VrelGlobal = Vaircraft - Vwind
+ 
+  VrelLocal = Wing.InverseTransformDirection(VrelGlobal)
+ 
+  AoA = atan2(VrelLocal.y, VrelLocal.z)
+ 
+  Beta = atan2(VrelLocal.x, VrelLocal.z)
 
  El viento relativo se calcula inicialmente en coordenadas globales como la diferencia entre la velocidad del vehículo y la velocidad del viento. Posteriormente, el vector se transforma al sistema local de cada superficie aerodinámica para calcular el ángulo de ataque y el sideslip.
 
@@ -55,6 +63,13 @@ World
       
 PhysicsEngine
   │-Update()
+  |-Aerodynamics
+        |-getrelativeairflow()
+        |-getLift()
+        |-getDrag()
+  |-Propulsion
+        |-getThrust()
+  |-getTotalForce()
   
 Flightcontrols(throttle, elevator, aileron, rudder, flaps, geardown)
 
