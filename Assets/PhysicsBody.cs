@@ -1,0 +1,52 @@
+using UnityEngine;
+
+public class PhysicsBody : MonoBehaviour
+{
+  private Rigidbody rb;
+
+  private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+    }  
+
+  public Vector3 GetVelocity()
+    {
+        return   rb.linearVelocity;
+    }
+
+  public Vector3 GetPosition()
+    {
+        return transform.position;
+    }
+
+  public Vector3 GetForward()
+    {
+        return transform.forward;
+    }
+
+     public Vector3 GetUp()
+    {
+        return transform.up;
+    }
+     public Vector3 GetRight()
+        {
+            return transform.right;
+        }
+
+    public void AddForce(Vector3 force)
+        {
+            rb.AddForce(force);
+        }
+    
+    public Vector3 GlobalToLocalDirection(Vector3 direction)
+    {
+        return transform.InverseTransformDirection(direction);
+    }
+    
+    public Vector3 LocalToGlobalDirection(Vector3 direction)
+    {
+        return transform.TransformDirection(direction);
+    }
+
+
+}
