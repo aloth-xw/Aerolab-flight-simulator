@@ -13,6 +13,10 @@ public class Aerodynamics : MonoBehaviour
         physicsBody = GetComponent<PhysicsBody>();
     }
 
+    public float GetAirDensity()
+    {
+        return world.GetAtmosphere().GetDensity();
+    }
     public Vector3 GetRelativeAirFlow()
     {
         Vector3 aircraftVelocity = physicsBody.GetVelocity();
@@ -22,7 +26,7 @@ public class Aerodynamics : MonoBehaviour
 
     public float GetAngleOfAttack(Vector3 wingForward, Vector3 wingUp)
     {
-        Vector3 airflow = -GetRelativeAirFlow();
+        Vector3 airflow = GetRelativeAirFlow();
 
         if (airflow.sqrMagnitude < 0.0001f)
             return 0f;
@@ -74,10 +78,5 @@ public class Aerodynamics : MonoBehaviour
     public void ApplyForce(Vector3 direction, float magnitude, Vector3 position)
     {
         physicsBody.AddForceAtPosition(direction * magnitude, position);
-    }
-
-    private void FixedUpdate()
-    {
-        Vector3 relativeAirFlow = GetRelativeAirFlow();
     }
 }

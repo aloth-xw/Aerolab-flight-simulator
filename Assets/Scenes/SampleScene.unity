@@ -656,62 +656,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1030571883
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1030571884}
-  - component: {fileID: 1030571885}
-  m_Layer: 0
-  m_Name: Airfoil_Right
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1030571884
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1030571883}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.665095, y: -3.3333328, z: 4.466005}
-  m_LocalScale: {x: 0.125, y: 6.6666656, z: 0.5}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1036178374}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1030571885
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1030571883}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 205addae8cb96de489bdf7ef08e4147f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AirfoilConfig
-  liftCoefficientCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  dragCoefficientCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &1036178373
 GameObject:
   m_ObjectHideFlags: 0
@@ -745,7 +689,7 @@ Transform:
   m_LocalScale: {x: 4, y: 0.15, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1030571884}
+  - {fileID: 1424052121}
   m_Father: {fileID: 2122580041}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1036178375
@@ -763,8 +707,8 @@ MonoBehaviour:
   area: 10
   position: {x: 0, y: 0, z: 0}
   orientation: {x: 0, y: 0, z: 0}
-  airfoil: {fileID: 1030571885}
-  side: 0
+  airfoil: {fileID: 1424052122}
+  side: 1
   aileronEffect: 1
   aileronInput: 0
 --- !u!65 &1036178376
@@ -892,6 +836,125 @@ Transform:
   - {fileID: 59278915}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1424052120
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1424052121}
+  - component: {fileID: 1424052122}
+  m_Layer: 0
+  m_Name: Airfoil_Right
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1424052121
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1424052120}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.997, y: -3.333333, z: 4.466005}
+  m_LocalScale: {x: 0.125, y: 6.6666656, z: 0.5}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1036178374}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1424052122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1424052120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 205addae8cb96de489bdf7ef08e4147f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AirfoilConfig
+  liftCoefficientCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -20.434217
+      value: -1.0202584
+      inSlope: 0.051219873
+      outSlope: 0.051219873
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: -10.391697
+      value: -0.5058818
+      inSlope: 0.05000466
+      outSlope: 0.05000466
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: -0.11555529
+      value: -0.0045145154
+      inSlope: 0.048530214
+      outSlope: 0.048530214
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 1
+      outWeight: 1
+    - serializedVersion: 3
+      time: 20.019531
+      value: 1.0346069
+      inSlope: 0.051607497
+      outSlope: 0.051607497
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  dragCoefficientCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -10.059747
+      value: 0.21299767
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.24223498
+      value: 0.0175449
+      inSlope: 0.002633377
+      outSlope: 0.002633377
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.46366715
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 10.199089
+      value: 0.25577512
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &2051010738
 GameObject:
   m_ObjectHideFlags: 0
@@ -918,7 +981,7 @@ Transform:
   m_GameObject: {fileID: 2051010738}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.584905, y: -3.333333, z: 4.466005}
+  m_LocalPosition: {x: -0.541, y: -3.333333, z: 4.466005}
   m_LocalScale: {x: 0.125, y: 6.666666, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -938,13 +1001,76 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AirfoilConfig
   liftCoefficientCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: -20.434217
+      value: -1.0202584
+      inSlope: 0.051219873
+      outSlope: 0.051219873
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: -10.391697
+      value: -0.5058818
+      inSlope: 0.05000466
+      outSlope: 0.05000466
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: -0.11555529
+      value: -0.0045145154
+      inSlope: 0.048530214
+      outSlope: 0.048530214
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 1
+      outWeight: 1
+    - serializedVersion: 3
+      time: 20.019531
+      value: 1.0346069
+      inSlope: 0.051607497
+      outSlope: 0.051607497
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   dragCoefficientCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: -10.059747
+      value: 0.21299767
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.24223498
+      value: 0.0175449
+      inSlope: 0.002633377
+      outSlope: 0.002633377
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.46366715
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 10.199089
+      value: 0.25577512
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
@@ -961,6 +1087,7 @@ GameObject:
   - component: {fileID: 2122580039}
   - component: {fileID: 2122580038}
   - component: {fileID: 2122580037}
+  - component: {fileID: 2122580042}
   - component: {fileID: 2122580036}
   - component: {fileID: 2122580035}
   m_Layer: 0
@@ -1003,7 +1130,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2122580034}
   serializedVersion: 5
-  m_Mass: 1
+  m_Mass: 100
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -1017,7 +1144,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -1109,7 +1236,7 @@ Transform:
   m_GameObject: {fileID: 2122580034}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 2, y: 1, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1117,6 +1244,19 @@ Transform:
   - {fileID: 1036178374}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2122580042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2122580034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4459b666f04c60458d5e88b3cd338fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TestForce
+  force: 10
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

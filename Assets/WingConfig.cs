@@ -57,7 +57,6 @@ public class WingConfig : MonoBehaviour
         float aoa = aerodynamics.GetAngleOfAttack(wingForward,wingUp);
 
         float cl = airfoil.GetLiftCoefficient(Mathf.Clamp(aoa, -20f, 20f));
-        //float cl = 0.01f;
         float cd = airfoil.GetDragCoefficient(Mathf.Clamp(aoa, -20f, 20f));
 
 
@@ -65,7 +64,7 @@ public class WingConfig : MonoBehaviour
 
         float speed = relativeAirFlow.magnitude;
 
-        float density = 1.225f;
+        float density = aerodynamics.GetAirDensity();
 
 
         float lift = aerodynamics.CalculateLift(density,speed,area,cl);
@@ -91,10 +90,10 @@ public class WingConfig : MonoBehaviour
         
         Debug.Log("AoA: " + aoa + " | CL: " + cl + " | Lift: " + lift);
         Debug.Log("Lift Direction: " + liftDirection +" | Drag Direction: " + dragDirection);
-        Debug.Log("Speed: " + speed +" | AoA: " + aoa +" | CL: " + cl +" | Lift: " + lift
-);
+        Debug.Log("Speed: " + speed +" | AoA: " + aoa +" | CL: " + cl +" | Lift: " + lift);
+
         aerodynamics.ApplyForce(liftDirection, lift, transform.position);
-        aerodynamics.ApplyForce(dragDirection, drag, transform.position);
+        //aerodynamics.ApplyForce(dragDirection, drag, transform.position);
       
     }
 }

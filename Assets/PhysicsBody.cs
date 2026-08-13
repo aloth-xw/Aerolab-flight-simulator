@@ -7,7 +7,12 @@ public class PhysicsBody : MonoBehaviour
   private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-    }  
+    }
+
+    public Vector3 GetCenterOfMass()
+{
+    return rb.worldCenterOfMass;
+} 
 
   public Vector3 GetVelocity()
     {
@@ -32,6 +37,11 @@ public class PhysicsBody : MonoBehaviour
         {
             return transform.right;
         }
+
+    public Vector3 GetAngularVelocity()
+    {
+        return rb.angularVelocity;
+    }
 
     public void AddForce(Vector3 force)
         {
