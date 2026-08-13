@@ -1,5 +1,8 @@
 using UnityEngine;
-
+public enum WingSide
+{
+    Left, Right
+}
 public class WingConfig : MonoBehaviour
 {
     [SerializeField]
@@ -11,9 +14,17 @@ public class WingConfig : MonoBehaviour
     [SerializeField]
     private Vector3 orientation;
 
-    
     [SerializeField]
     private AirfoilConfig airfoil;
+
+      [SerializeField]
+    private WingSide side;
+
+    [SerializeField]
+    private float aileronEffect = 1f;
+
+    [SerializeField]
+    private float aileronInput = 0f;
 
     public float GetArea()
     {
@@ -56,7 +67,22 @@ public class WingConfig : MonoBehaviour
 
         float density = 1.225f;
 
+
         float lift = aerodynamics.CalculateLift(density,speed,area,cl);
+
+        float liftMultiplier = 1f;
+
+        if (side == WingSide.Left)
+        {
+            liftMultiplier += aileronInput * aileronEffect;
+        }
+        else
+        {
+            liftMultiplier -= aileronInput * aileronEffect;
+        }
+
+        lift *= liftMultiplier;
+
         float drag = aerodynamics.CalculateDrag(density,speed,area,cd);
 
         Vector3 liftDirection = aerodynamics.GetLiftDirection(wingUp);
@@ -67,8 +93,8 @@ public class WingConfig : MonoBehaviour
         Debug.Log("Lift Direction: " + liftDirection +" | Drag Direction: " + dragDirection);
         Debug.Log("Speed: " + speed +" | AoA: " + aoa +" | CL: " + cl +" | Lift: " + lift
 );
-        aerodynamics.ApplyForce(liftDirection, lift);
-        aerodynamics.ApplyForce(dragDirection, drag);
+        aerodynamics.ApplyForce(liftDirection, lift, transform.position);
+        aerodynamics.ApplyForce(dragDirection, drag, transform.position);
       
     }
 }

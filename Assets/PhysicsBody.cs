@@ -38,6 +38,10 @@ public class PhysicsBody : MonoBehaviour
             rb.AddForce(force);
         }
     
+    public void AddForceAtPosition(Vector3 force, Vector3 position)
+    {
+        rb.AddForceAtPosition(force, position);
+    }
     public Vector3 GlobalToLocalDirection(Vector3 direction)
     {
         return transform.InverseTransformDirection(direction);

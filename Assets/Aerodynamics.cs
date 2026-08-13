@@ -71,9 +71,9 @@ public class Aerodynamics : MonoBehaviour
         return -relativeAirFlow.normalized; 
     }
 
-    public void ApplyForce(Vector3 direction, float magnitude)
+    public void ApplyForce(Vector3 direction, float magnitude, Vector3 position)
     {
-        physicsBody.AddForce(direction * magnitude);
+        physicsBody.AddForceAtPosition(direction * magnitude, position);
     }
 
     private void FixedUpdate()
