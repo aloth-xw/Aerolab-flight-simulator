@@ -1343,6 +1343,7 @@ GameObject:
   - component: {fileID: 2122580038}
   - component: {fileID: 2122580037}
   - component: {fileID: 2122580042}
+  - component: {fileID: 2122580043}
   - component: {fileID: 2122580036}
   - component: {fileID: 2122580035}
   m_Layer: 0
@@ -1513,6 +1514,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestForce
   force: 300
+  physicsBody: {fileID: 0}
+--- !u!114 &2122580043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2122580034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e31a2d612587a84b935d4c838a18c97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Engine
+  maxThrust: 5000
+  throttle: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
