@@ -62,5 +62,15 @@ public class PhysicsBody : MonoBehaviour
         return transform.TransformDirection(direction);
     }
 
+    private void Start()
+        {
+            rb.linearVelocity = transform.forward * 40f;
+        }
+
+    public void FixedUpdate()
+    {
+        Debug.Log("Velocity: " + GetVelocity());
+        Debug.Log("Inertia Tensor: " + rb.inertiaTensor);
+    }
 
 }

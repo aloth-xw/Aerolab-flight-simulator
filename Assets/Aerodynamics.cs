@@ -17,21 +17,26 @@ public class Aerodynamics : MonoBehaviour
     {
         return world.GetAtmosphere().GetDensity();
     }
-    public Vector3 GetRelativeAirFlow()
+    public Vector3 GetRelativeAirFlow(Vector3 WorldPosition)
     {
-        Vector3 aircraftVelocity = physicsBody.GetVelocity();
         Vector3 wind = world.GetAtmosphere().GetWind();
-        return aircraftVelocity - wind;
+
+        Vector3 centreOfMass = physicsBody.GetCenterOfMass();
+        Vector3 angularVelocity = physicsBody.GetAngularVelocity();
+
+        Vector3 pointVelocity = physicsBody.GetVelocity() + Vector3.Cross(angularVelocity, WorldPosition-centreOfMass);
+        return pointVelocity - wind;
     }
 
-    public float GetAngleOfAttack(Vector3 wingForward, Vector3 wingUp)
+    public float GetAngleOfAttack(Vector3 wingForward, Vector3 wingUp, Vector3 relativeAirFlow)
     {
-        Vector3 airflow = GetRelativeAirFlow();
-
-        if (airflow.sqrMagnitude < 0.0001f)
+        if (relativeAirFlow.sqrMagnitude < 0.001f)
             return 0f;
+            
+        if (relativeAirFlow.magnitude < 1f)
+        return 0f;
 
-        airflow.Normalize();
+        Vector3 airflow = relativeAirFlow.normalized;
 
 
         float forwardComponent = Vector3.Dot(airflow,wingForward);
@@ -46,18 +51,16 @@ public class Aerodynamics : MonoBehaviour
     }
 
 
-    public Vector3 GetLiftDirection(Vector3 wingUp )
+    public Vector3 GetLiftDirection(Vector3 wingUp, Vector3 relativeAirFlow)
     {
-        Vector3 relativeAirFlow = GetRelativeAirFlow();
 
         if (relativeAirFlow.sqrMagnitude < 0.0001f)
             return Vector3.zero;
 
-        relativeAirFlow.Normalize();
+        Vector3 flow = relativeAirFlow.normalized;
+        Vector3 side = Vector3.Cross(wingUp, flow);
 
-        Vector3 side = Vector3.Cross(wingUp, relativeAirFlow);
-
-        return Vector3.Cross(relativeAirFlow,side).normalized;
+        return Vector3.Cross(flow,side).normalized;
     }
 
     public float CalculateDrag(float density, float speed, float area, float cd)
@@ -65,12 +68,10 @@ public class Aerodynamics : MonoBehaviour
         return 0.5f * density * speed * speed * area * cd; 
     }
 
-    public Vector3 GetDragDirection()
+    public Vector3 GetDragDirection(Vector3 relativeAirFlow)
     {
-        Vector3 relativeAirFlow = GetRelativeAirFlow();
-
-        if (relativeAirFlow.sqrMagnitude <0.0001f)
-         return Vector3.zero;
+        if (relativeAirFlow.sqrMagnitude < 0.0001f)
+            return Vector3.zero;
 
         return -relativeAirFlow.normalized; 
     }

@@ -3,6 +3,11 @@ public enum WingSide
 {
     Left, Right
 }
+
+public enum AeroSurfaceType
+{
+    MainWing, Tail
+}
 public class WingConfig : MonoBehaviour
 {
     [SerializeField]
@@ -17,7 +22,7 @@ public class WingConfig : MonoBehaviour
     [SerializeField]
     private AirfoilConfig airfoil;
 
-      [SerializeField]
+    [SerializeField]
     private WingSide side;
 
     [SerializeField]
@@ -25,6 +30,9 @@ public class WingConfig : MonoBehaviour
 
     [SerializeField]
     private float aileronInput = 0f;
+
+    [SerializeField]
+    private AeroSurfaceType surfaceType;
 
     public float GetArea()
     {
@@ -54,16 +62,15 @@ public class WingConfig : MonoBehaviour
         Vector3 wingForward = transform.forward;
         Vector3 wingUp = transform.up;
 
-        float aoa = aerodynamics.GetAngleOfAttack(wingForward,wingUp);
+        Vector3 relativeAirFlow = aerodynamics.GetRelativeAirFlow(transform.position);
+
+
+        float aoa = aerodynamics.GetAngleOfAttack(wingForward,wingUp, relativeAirFlow);
 
         float cl = airfoil.GetLiftCoefficient(Mathf.Clamp(aoa, -20f, 20f));
         float cd = airfoil.GetDragCoefficient(Mathf.Clamp(aoa, -20f, 20f));
 
-
-        Vector3 relativeAirFlow = aerodynamics.GetRelativeAirFlow();
-
         float speed = relativeAirFlow.magnitude;
-
         float density = aerodynamics.GetAirDensity();
 
 
@@ -84,16 +91,14 @@ public class WingConfig : MonoBehaviour
 
         float drag = aerodynamics.CalculateDrag(density,speed,area,cd);
 
-        Vector3 liftDirection = aerodynamics.GetLiftDirection(wingUp);
+        Vector3 liftDirection = aerodynamics.GetLiftDirection(wingUp, relativeAirFlow);
 
-        Vector3 dragDirection = aerodynamics.GetDragDirection();
+        Vector3 dragDirection = aerodynamics.GetDragDirection(relativeAirFlow);
         
-        Debug.Log("AoA: " + aoa + " | CL: " + cl + " | Lift: " + lift);
-        Debug.Log("Lift Direction: " + liftDirection +" | Drag Direction: " + dragDirection);
-        Debug.Log("Speed: " + speed +" | AoA: " + aoa +" | CL: " + cl +" | Lift: " + lift);
+        Debug.Log("AoA: " + aoa + " | CL: " + cl + " | Lift: " + lift + " | AngularVelocity: " + aerodynamics.GetComponent<PhysicsBody>().GetAngularVelocity());
 
         aerodynamics.ApplyForce(liftDirection, lift, transform.position);
-        //aerodynamics.ApplyForce(dragDirection, drag, transform.position);
+        aerodynamics.ApplyForce(dragDirection, drag, transform.position);
       
     }
 }
