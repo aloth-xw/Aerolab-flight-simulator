@@ -62,6 +62,11 @@ public class PhysicsBody : MonoBehaviour
         return transform.TransformDirection(direction);
     }
 
+    public void AddTorque(Vector3 torque)
+    {
+        rb.AddTorque(torque);
+    }
+
     private void Start()
         {
             rb.linearVelocity = transform.forward * 40f;
