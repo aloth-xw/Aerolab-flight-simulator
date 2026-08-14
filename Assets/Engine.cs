@@ -14,11 +14,17 @@ public class Engine : MonoBehaviour
   private void Awake()
     {
         physicsBody = GetComponent<PhysicsBody>();
-    }  
+    }
+
+    public void SetThrottle(float value)
+    {
+        throttle = Mathf.Clamp01(value);
+    }
 
  private void FixedUpdate()
     {
         float currentThrust = maxThrust*throttle;
         physicsBody.AddForce(physicsBody.GetForward()*currentThrust);
     }
+
 }

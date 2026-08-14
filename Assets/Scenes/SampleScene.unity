@@ -1346,6 +1346,8 @@ GameObject:
   - component: {fileID: 2122580043}
   - component: {fileID: 2122580036}
   - component: {fileID: 2122580035}
+  - component: {fileID: 2122580045}
+  - component: {fileID: 2122580044}
   m_Layer: 0
   m_Name: Aircraft
   m_TagString: Untagged
@@ -1513,8 +1515,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4459b666f04c60458d5e88b3cd338fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestForce
-  force: 300
-  physicsBody: {fileID: 0}
 --- !u!114 &2122580043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1529,6 +1529,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Engine
   maxThrust: 5000
   throttle: 1
+--- !u!114 &2122580044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2122580034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3ec1a755feae4448b38264de85f2cef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlightControls
+  throttleAction: {fileID: -905571982937809413, guid: 7b1917ffa7cbf784bbd2b21d17031104, type: 3}
+--- !u!114 &2122580045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2122580034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10b7e3f9bf75516468114e3aac10a037, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AircraftConfig
+  emptyMass: 1000
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
