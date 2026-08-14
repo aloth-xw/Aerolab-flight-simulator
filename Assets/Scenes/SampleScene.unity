@@ -1545,7 +1545,8 @@ MonoBehaviour:
   rollAction: {fileID: 4519517799672643086, guid: 7b1917ffa7cbf784bbd2b21d17031104, type: 3}
   pitchAction: {fileID: 725316992579142864, guid: 7b1917ffa7cbf784bbd2b21d17031104, type: 3}
   yawAction: {fileID: 649295761546468314, guid: 7b1917ffa7cbf784bbd2b21d17031104, type: 3}
-  rollTorque: 50
+  maxRollRate: 60
+  rollControlStrength: 100
   pitchTorque: 10
   yawTorque: 10
 --- !u!114 &2122580045
