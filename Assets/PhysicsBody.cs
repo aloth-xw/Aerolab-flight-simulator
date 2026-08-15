@@ -4,6 +4,10 @@ public class PhysicsBody : MonoBehaviour
 {
   private Rigidbody rb;
 
+  
+    private Vector3 previousVelocity;
+    private Vector3 acceleration;
+
   private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -43,6 +47,12 @@ public class PhysicsBody : MonoBehaviour
         return rb.angularVelocity;
     }
 
+    public Vector3 GetAcceleration()
+    {
+        return acceleration;
+    }
+
+
     public void AddForce(Vector3 force)
         {
             rb.AddForce(force);
@@ -70,12 +80,15 @@ public class PhysicsBody : MonoBehaviour
     private void Start()
         {
             rb.linearVelocity = transform.forward * 40f;
+            previousVelocity = rb.linearVelocity;
         }
 
     public void FixedUpdate()
     {
-        Debug.Log("Velocity: " + GetVelocity());
-        Debug.Log("Inertia Tensor: " + rb.inertiaTensor);
+        Vector3 currentVelocity = rb.linearVelocity;
+        acceleration = (currentVelocity - previousVelocity) / Time.fixedDeltaTime;
+                previousVelocity = currentVelocity;
+        Debug.Log("Velocity: " + currentVelocity + " Acceleration: "+ acceleration);
     }
 
 }

@@ -25,16 +25,13 @@ public class Aerodynamics : MonoBehaviour
         Vector3 angularVelocity = physicsBody.GetAngularVelocity();
 
         Vector3 pointVelocity = physicsBody.GetVelocity() + Vector3.Cross(angularVelocity, WorldPosition-centreOfMass);
-        return pointVelocity - wind;
+        return wind - pointVelocity;
     }
 
     public float GetAngleOfAttack(Vector3 wingForward, Vector3 wingUp, Vector3 relativeAirFlow)
     {
-        if (relativeAirFlow.sqrMagnitude < 0.001f)
+        if (relativeAirFlow.sqrMagnitude < 1f)
             return 0f;
-            
-        if (relativeAirFlow.magnitude < 1f)
-        return 0f;
 
         Vector3 airflow = relativeAirFlow.normalized;
 
@@ -49,7 +46,6 @@ public class Aerodynamics : MonoBehaviour
     {
         return 0.5f * density * speed * speed * area * cl;
     }
-
 
     public Vector3 GetLiftDirection(Vector3 wingUp, Vector3 relativeAirFlow)
     {
@@ -73,7 +69,7 @@ public class Aerodynamics : MonoBehaviour
         if (relativeAirFlow.sqrMagnitude < 0.0001f)
             return Vector3.zero;
 
-        return -relativeAirFlow.normalized; 
+        return relativeAirFlow.normalized; 
     }
 
     public void ApplyForce(Vector3 direction, float magnitude, Vector3 position)

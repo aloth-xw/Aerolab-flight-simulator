@@ -108,7 +108,7 @@ public class FlightControls : MonoBehaviour
     private void FixedUpdate()
     {
         physicsBody.AddTorque(physicsBody.GetForward()*rollTorque);
-        physicsBody.AddTorque(physicsBody.GetRight()*pitchInput*pitchTorque);
-        physicsBody.AddTorque(physicsBody.GetUp()*yawInput*yawTorque);
+        physicsBody.AddTorque(physicsBody.GetRight()*pitchTorque);
+        physicsBody.AddTorque(physicsBody.GetUp()*yawTorque);
     }
 }

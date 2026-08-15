@@ -21,10 +21,21 @@ public class Engine : MonoBehaviour
         throttle = Mathf.Clamp01(value);
     }
 
+    public float GetCurrentThrust()
+    {
+        return maxThrust*throttle;
+    }
+
+    public float GetThrottle()
+    {
+        return throttle;
+    }
+
  private void FixedUpdate()
     {
         float currentThrust = maxThrust*throttle;
         physicsBody.AddForce(physicsBody.GetForward()*currentThrust);
+        Debug.Log("Throttle: "+ throttle + " | Thrust: " + GetCurrentThrust());
     }
 
 }

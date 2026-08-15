@@ -34,6 +34,8 @@ public class WingConfig : MonoBehaviour
     [SerializeField]
     private AeroSurfaceType surfaceType;
 
+    private float currentDrag;
+
     public float GetArea()
     {
         return area;
@@ -52,6 +54,11 @@ public class WingConfig : MonoBehaviour
     public AirfoilConfig GetAirfoil()
     {
         return airfoil;
+    }
+
+    public float GetCurrentDrag()
+    {
+        return currentDrag;
     }
 
     
@@ -89,16 +96,16 @@ public class WingConfig : MonoBehaviour
 
         lift *= liftMultiplier;
 
-        float drag = aerodynamics.CalculateDrag(density,speed,area,cd);
+        currentDrag = aerodynamics.CalculateDrag(density,speed,area,cd);
 
         Vector3 liftDirection = aerodynamics.GetLiftDirection(wingUp, relativeAirFlow);
 
         Vector3 dragDirection = aerodynamics.GetDragDirection(relativeAirFlow);
         
-        Debug.Log("AoA: " + aoa + " | CL: " + cl + " | Lift: " + lift + " | AngularVelocity: " + aerodynamics.GetComponent<PhysicsBody>().GetAngularVelocity());
+        Debug.Log("AoA: " + aoa + " | CL: " + cl + " | Lift: " + lift + " Current Drag:  " + currentDrag);
 
         aerodynamics.ApplyForce(liftDirection, lift, transform.position);
-        aerodynamics.ApplyForce(dragDirection, drag, transform.position);
+        aerodynamics.ApplyForce(dragDirection, currentDrag, transform.position);
       
     }
 }
