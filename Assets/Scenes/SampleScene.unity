@@ -527,7 +527,7 @@ MonoBehaviour:
   orientation: {x: 0, y: 0, z: 0}
   airfoil: {fileID: 2051010740}
   side: 0
-  aileronEffect: 1
+  aileronEffect: 2
   aileronInput: 0
   surfaceType: 0
 --- !u!65 &619149738
@@ -710,7 +710,7 @@ MonoBehaviour:
   orientation: {x: 0, y: 0, z: 0}
   airfoil: {fileID: 1424052122}
   side: 1
-  aileronEffect: 1
+  aileronEffect: 2
   aileronInput: 0
   surfaceType: 0
 --- !u!65 &1036178376

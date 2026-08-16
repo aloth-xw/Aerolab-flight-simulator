@@ -5,8 +5,9 @@ public class FlightControls : MonoBehaviour
 {
     
     private Engine engine;
-
     private PhysicsBody physicsBody;
+    private Aircraft aircraft;
+
 
     [SerializeField]
     private InputActionReference throttleAction;
@@ -57,6 +58,7 @@ public class FlightControls : MonoBehaviour
     {
         engine = GetComponent<Engine>();
         physicsBody = GetComponent<PhysicsBody>();
+        aircraft = GetComponent<Aircraft>();
     }
 
     private void OnEnable()
@@ -86,6 +88,7 @@ public class FlightControls : MonoBehaviour
       
   
       rollInput = rollAction.action.ReadValue<float>();
+      aircraft.SetRollInput(rollInput);
       pitchInput = pitchAction.action.ReadValue<float>();
       yawInput = yawAction.action.ReadValue<float>();
 
@@ -107,7 +110,7 @@ public class FlightControls : MonoBehaviour
 
     private void FixedUpdate()
     {
-        physicsBody.AddTorque(physicsBody.GetForward()*rollTorque);
+        //physicsBody.AddTorque(physicsBody.GetForward()*rollTorque);
         physicsBody.AddTorque(physicsBody.GetRight()*pitchTorque);
         physicsBody.AddTorque(physicsBody.GetUp()*yawTorque);
     }

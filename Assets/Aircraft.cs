@@ -49,6 +49,18 @@ public class Aircraft : MonoBehaviour
         return Vector3.Dot(physicsBody.GetAcceleration(),physicsBody.GetForward());
     }
 
+    public void SetRollInput(float input)
+    {
+        foreach (WingConfig surface in aeroSurfaces)
+        {
+            if (surface.GetSurfaceType() != AeroSurfaceType.MainWing)
+                continue;
+
+                surface.SetAileronInput(input);
+        }
+
+    }
+
     private void FixedUpdate()
     {
 
@@ -60,7 +72,6 @@ public class Aircraft : MonoBehaviour
         " | Net: " + GetNetThrust() +
         " | Forward Acc: " + GetForwardAcceleration()
     );
-
 
     }
 }

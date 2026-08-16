@@ -26,7 +26,7 @@ public class WingConfig : MonoBehaviour
     private WingSide side;
 
     [SerializeField]
-    private float aileronEffect = 1f;
+    private float aileronEffect = 0.2f;
 
     [SerializeField]
     private float aileronInput = 0f;
@@ -61,6 +61,21 @@ public class WingConfig : MonoBehaviour
         return currentDrag;
     }
 
+    public WingSide GetSide()
+    {
+        return side;
+    }
+
+    public AeroSurfaceType GetSurfaceType()
+    {
+        return surfaceType;
+    }
+
+    public void SetAileronInput(float input)
+    {
+        aileronInput = Mathf.Clamp(input, -1f, 1f);
+    }
+
     
     private void FixedUpdate()
     {
@@ -84,16 +99,18 @@ public class WingConfig : MonoBehaviour
         float lift = aerodynamics.CalculateLift(density,speed,area,cl);
 
         float liftMultiplier = 1f;
-
-        if (side == WingSide.Left)
+        
+        if (surfaceType ==AeroSurfaceType.MainWing)
         {
-            liftMultiplier += aileronInput * aileronEffect;
+            if (side == WingSide.Left)
+            {
+                liftMultiplier += aileronInput * aileronEffect;
+            }
+            else
+            {
+                liftMultiplier -= aileronInput * aileronEffect;
+            }
         }
-        else
-        {
-            liftMultiplier -= aileronInput * aileronEffect;
-        }
-
         lift *= liftMultiplier;
 
         currentDrag = aerodynamics.CalculateDrag(density,speed,area,cd);
@@ -102,7 +119,11 @@ public class WingConfig : MonoBehaviour
 
         Vector3 dragDirection = aerodynamics.GetDragDirection(relativeAirFlow);
         
-        Debug.Log("AoA: " + aoa + " | CL: " + cl + " | Lift: " + lift + " Current Drag:  " + currentDrag);
+        Debug.Log(
+    "Side: " + side +
+    " | Aileron: " + aileronInput +
+    " | Lift: " + lift
+);
 
         aerodynamics.ApplyForce(liftDirection, lift, transform.position);
         aerodynamics.ApplyForce(dragDirection, currentDrag, transform.position);
