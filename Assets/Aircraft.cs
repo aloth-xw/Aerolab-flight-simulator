@@ -34,6 +34,16 @@ public class Aircraft : MonoBehaviour
         return physicsBody.GetVelocity().magnitude;
     }
 
+    public float GetThrottle()
+    {
+        return engine.GetThrottle();
+    }
+
+    public float GetAltitude()
+    {
+        return transform.position.y;
+    }
+
     public float GetThrust()
     {
         return engine.GetCurrentThrust();
@@ -59,6 +69,13 @@ public class Aircraft : MonoBehaviour
                 surface.SetAileronInput(input);
         }
 
+    }
+
+    public float GetAoA()
+    {
+       Vector3 relativeAirflow = aerodynamics.GetRelativeAirFlow(physicsBody.GetCenterOfMass());
+
+       return aerodynamics.GetAngleOfAttack(transform.forward,transform.up,relativeAirflow);
     }
 
     private void FixedUpdate()

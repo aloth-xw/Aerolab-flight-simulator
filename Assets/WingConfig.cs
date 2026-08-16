@@ -35,6 +35,7 @@ public class WingConfig : MonoBehaviour
     private AeroSurfaceType surfaceType;
 
     private float currentDrag;
+    private float currentAoA;
 
     public float GetArea()
     {
@@ -118,12 +119,6 @@ public class WingConfig : MonoBehaviour
         Vector3 liftDirection = aerodynamics.GetLiftDirection(wingUp, relativeAirFlow);
 
         Vector3 dragDirection = aerodynamics.GetDragDirection(relativeAirFlow);
-        
-        Debug.Log(
-    "Side: " + side +
-    " | Aileron: " + aileronInput +
-    " | Lift: " + lift
-);
 
         aerodynamics.ApplyForce(liftDirection, lift, transform.position);
         aerodynamics.ApplyForce(dragDirection, currentDrag, transform.position);

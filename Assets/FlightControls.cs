@@ -21,14 +21,10 @@ public class FlightControls : MonoBehaviour
     [SerializeField]
     private InputActionReference yawAction;
 
-
     [SerializeField]
-    private float maxRollRate = 60f;
+    private float controlResponse = 5f;
 
-    [SerializeField]
-    private float rollControlStrength = 100f;
 
- 
 
     [SerializeField]
     private float maxPitchRate = 60f;
@@ -46,7 +42,6 @@ public class FlightControls : MonoBehaviour
     private float throttleInput;
 
     private float rollInput;
-    private float rollTorque;
 
     private float pitchInput;
     private float pitchTorque;
@@ -86,16 +81,17 @@ public class FlightControls : MonoBehaviour
 
       engine.SetThrottle(throttle);
       
-  
-      rollInput = rollAction.action.ReadValue<float>();
-      aircraft.SetRollInput(rollInput);
-      pitchInput = pitchAction.action.ReadValue<float>();
-      yawInput = yawAction.action.ReadValue<float>();
 
-      float targetRollRate = rollInput * maxRollRate;
-      float currentRollRate = Vector3.Dot(physicsBody.GetAngularVelocity(),physicsBody.GetForward())* Mathf.Rad2Deg;
-      float rollError = targetRollRate - currentRollRate;
-      rollTorque = rollError * rollControlStrength;
+      float targetRollInput = rollAction.action.ReadValue<float>();
+      float targetPitchInput = pitchAction.action.ReadValue<float>();
+      float targetYawInput = yawAction.action.ReadValue<float>();
+
+      rollInput = Mathf.MoveTowards(rollInput,targetRollInput, controlResponse*Time.deltaTime);
+      pitchInput = Mathf.MoveTowards(pitchInput,targetPitchInput, controlResponse*Time.deltaTime);
+      yawInput = Mathf.MoveTowards(yawInput,targetYawInput, controlResponse*Time.deltaTime);
+
+      aircraft.SetRollInput(rollInput);
+
 
       float targetPitchRate = pitchInput * maxPitchRate;
       float currentPitchRate = Vector3.Dot(physicsBody.GetAngularVelocity(),physicsBody.GetRight())*Mathf.Rad2Deg;
@@ -106,11 +102,11 @@ public class FlightControls : MonoBehaviour
       float currentYawRate = Vector3.Dot(physicsBody.GetAngularVelocity(),physicsBody.GetUp())*Mathf.Rad2Deg;
       float yawError = targetYawRate - currentYawRate;
       yawTorque = yawError * yawControlStrength;
+
     }
 
     private void FixedUpdate()
     {
-        //physicsBody.AddTorque(physicsBody.GetForward()*rollTorque);
         physicsBody.AddTorque(physicsBody.GetRight()*pitchTorque);
         physicsBody.AddTorque(physicsBody.GetUp()*yawTorque);
     }

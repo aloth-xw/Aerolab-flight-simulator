@@ -40,7 +40,9 @@ public class Aerodynamics : MonoBehaviour
         float verticalComponent = Vector3.Dot(airflow,wingUp);
 
         return Mathf.Atan2(verticalComponent, forwardComponent)*Mathf.Rad2Deg;
+
     }
+
 
     public float CalculateLift(float density, float speed, float area, float cl)
     {
