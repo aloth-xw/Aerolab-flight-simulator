@@ -38,6 +38,9 @@ public class FlightControls : MonoBehaviour
     [SerializeField]
     private float yawControlStrength = 100f;
 
+    [SerializeField] private float targetAoA = 5f;
+    [SerializeField] private float aoaCorrectionStrength = 20f;
+
     private float throttle;
     private float throttleInput;
 
@@ -48,6 +51,7 @@ public class FlightControls : MonoBehaviour
 
     private float yawInput;
     private float yawTorque;
+
 
     private void Awake()
     {
@@ -94,16 +98,21 @@ public class FlightControls : MonoBehaviour
       aircraft.SetRollInput(rollInput);
 
 
-      float targetPitchRate = pitchInput * maxPitchRate;
-      float currentPitchRate = Vector3.Dot(physicsBody.GetAngularVelocity(),physicsBody.GetRight())*Mathf.Rad2Deg;
-      float pitchError = targetPitchRate - currentPitchRate;
-      pitchTorque = pitchError * pitchControlStrength;
+        float targetPitchRate = pitchInput * maxPitchRate;
+        float currentPitchRate = Vector3.Dot(physicsBody.GetAngularVelocity(),physicsBody.GetRight())*Mathf.Rad2Deg;
+        float pitchError = targetPitchRate - currentPitchRate;
+
+        float aoaError = targetAoA - aircraft.GetCurrentAoA();
+        float aoaCorrectionTorque = aoaError * aoaCorrectionStrength;
+
+        pitchTorque = (pitchError * pitchControlStrength) + aoaCorrectionTorque;
 
       float targetYawRate = yawInput * maxYawRate;
       float currentYawRate = Vector3.Dot(physicsBody.GetAngularVelocity(),physicsBody.GetUp())*Mathf.Rad2Deg;
       float yawError = targetYawRate - currentYawRate;
       yawTorque = yawError * yawControlStrength;
 
+      Debug.Log("AoA actual: " + aircraft.GetCurrentAoA() + " | aoaError: " + aoaError + " | correctionTorque: " + aoaCorrectionTorque);
     }
 
     private void FixedUpdate()

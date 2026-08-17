@@ -91,8 +91,6 @@ public class PhysicsBody : MonoBehaviour
         Vector3 currentVelocity = rb.linearVelocity;
         acceleration = (currentVelocity - previousVelocity) / Time.fixedDeltaTime;
                 previousVelocity = currentVelocity;
-        Debug.Log("Velocity: " + currentVelocity + " Acceleration: "+ acceleration);
-        Debug.Log("AngularVel: " + rb.angularVelocity + " | Vel: " + rb.linearVelocity);
     }
 
 }

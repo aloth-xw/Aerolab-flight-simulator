@@ -35,6 +35,12 @@ public class WingConfig : MonoBehaviour
     private AeroSurfaceType surfaceType;
 
     private float currentDrag;
+    private float currentAoA;
+
+    public float GetCurrentAoA()
+    {
+        return currentAoA;
+    }
 
     public float GetArea()
     {
@@ -88,6 +94,7 @@ public class WingConfig : MonoBehaviour
 
 
         float aoa = aerodynamics.GetAngleOfAttack(wingForward,wingUp, relativeAirFlow);
+        currentAoA = aoa;
 
         float cl = airfoil.GetLiftCoefficient(Mathf.Clamp(aoa, -20f, 20f));
         float cd = airfoil.GetDragCoefficient(Mathf.Clamp(aoa, -20f, 20f));

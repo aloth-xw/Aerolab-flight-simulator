@@ -70,7 +70,8 @@ public class Aircraft : MonoBehaviour
         }
 
     }
-
+  
+  //PARA EL HUD
     public float GetAoA()
     {
        Vector3 relativeAirflow = aerodynamics.GetRelativeAirFlow(physicsBody.GetCenterOfMass());
@@ -78,17 +79,19 @@ public class Aircraft : MonoBehaviour
        return aerodynamics.GetAngleOfAttack(transform.forward,transform.up,relativeAirflow);
     }
 
+  //PARA EL PITCH
+    public float GetCurrentAoA()
+    {
+        foreach (WingConfig surface in aeroSurfaces)
+        {
+            if (surface.GetSurfaceType() == AeroSurfaceType.MainWing)
+            return surface.GetCurrentAoA();
+        }
+        return 0f;
+    }
+
     private void FixedUpdate()
     {
-
-    Debug.Log(
-        "Speed: " + GetSpeed() +
-        " | Throttle: " + engine.GetThrottle() +
-        " | Thrust: " + GetThrust() +
-        " | Drag: " + GetTotalDrag() +
-        " | Net: " + GetNetThrust() +
-        " | Forward Acc: " + GetForwardAcceleration()
-    );
 
     }
 }

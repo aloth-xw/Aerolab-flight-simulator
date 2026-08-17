@@ -1049,14 +1049,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 619149735}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0.026176924, y: 0, z: 0, w: 0.99965733}
   m_LocalPosition: {x: -5, y: 0.5, z: 0}
   m_LocalScale: {x: 8, y: 0.15, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2051010739}
   m_Father: {fileID: 1230966583}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 3, y: 0, z: 0}
 --- !u!114 &619149737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1232,14 +1232,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1036178373}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0.026176924, y: 0, z: 0, w: 0.99965733}
   m_LocalPosition: {x: 5, y: 0.5, z: 0}
   m_LocalScale: {x: 8, y: 0.15, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 568336416}
   m_Father: {fileID: 1230966583}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 3, y: 0, z: 0}
 --- !u!114 &1036178375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1595,6 +1595,8 @@ MonoBehaviour:
   pitchControlStrength: 100
   maxYawRate: 60
   yawControlStrength: 100
+  targetAoA: 5
+  aoaCorrectionStrength: 20
 --- !u!114 &1230966577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1846,14 +1848,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1513073508}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0.01745245, y: 0, z: 0, w: 0.99984777}
   m_LocalPosition: {x: 0, y: 0, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 349021242}
   m_Father: {fileID: 1230966583}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -2, y: 0, z: 0}
 --- !u!114 &1513073510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2268,7 +2270,6 @@ GameObject:
   - component: {fileID: 2122580041}
   - component: {fileID: 2122580040}
   - component: {fileID: 2122580039}
-  - component: {fileID: 2122580042}
   m_Layer: 0
   m_Name: Aircraft_Body
   m_TagString: Untagged
@@ -2348,18 +2349,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1230966583}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2122580042
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2122580034}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4459b666f04c60458d5e88b3cd338fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TestForce
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
