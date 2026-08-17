@@ -80,6 +80,7 @@ public class FlightControls : MonoBehaviour
       throttle = Mathf.Clamp01(throttle);
 
       engine.SetThrottle(throttle);
+      Debug.Log("Input: " + throttleInput + " | Throttle acumulado: " + throttle);
       
 
       float targetRollInput = rollAction.action.ReadValue<float>();

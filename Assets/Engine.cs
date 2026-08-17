@@ -35,7 +35,6 @@ public class Engine : MonoBehaviour
     {
         float currentThrust = maxThrust*throttle;
         physicsBody.AddForce(physicsBody.GetForward()*currentThrust);
-        Debug.Log("Throttle: "+ throttle + " | Thrust: " + GetCurrentThrust());
     }
 
 }

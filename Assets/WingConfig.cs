@@ -35,7 +35,6 @@ public class WingConfig : MonoBehaviour
     private AeroSurfaceType surfaceType;
 
     private float currentDrag;
-    private float currentAoA;
 
     public float GetArea()
     {
@@ -122,6 +121,8 @@ public class WingConfig : MonoBehaviour
 
         aerodynamics.ApplyForce(liftDirection, lift, transform.position);
         aerodynamics.ApplyForce(dragDirection, currentDrag, transform.position);
+
+        Debug.Log(gameObject.name + " | AoA: " + aoa + " | Lift: " + lift + " | Drag: " + currentDrag);
       
     }
 }

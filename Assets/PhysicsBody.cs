@@ -11,6 +11,9 @@ public class PhysicsBody : MonoBehaviour
   private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+
+        rb = GetComponent<Rigidbody>();
+        rb.centerOfMass = Vector3.zero;
     }
 
     public Vector3 GetCenterOfMass()
@@ -89,6 +92,7 @@ public class PhysicsBody : MonoBehaviour
         acceleration = (currentVelocity - previousVelocity) / Time.fixedDeltaTime;
                 previousVelocity = currentVelocity;
         Debug.Log("Velocity: " + currentVelocity + " Acceleration: "+ acceleration);
+        Debug.Log("AngularVel: " + rb.angularVelocity + " | Vel: " + rb.linearVelocity);
     }
 
 }

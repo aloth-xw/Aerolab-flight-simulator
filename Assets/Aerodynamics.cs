@@ -33,16 +33,14 @@ public class Aerodynamics : MonoBehaviour
         if (relativeAirFlow.sqrMagnitude < 1f)
             return 0f;
 
-        Vector3 airflow = relativeAirFlow.normalized;
+        Vector3 velocityDirection = -relativeAirFlow.normalized;
 
 
-        float forwardComponent = Vector3.Dot(airflow,wingForward);
-        float verticalComponent = Vector3.Dot(airflow,wingUp);
+        float forwardComponent = Vector3.Dot(velocityDirection,wingForward);
+        float verticalComponent = Vector3.Dot(velocityDirection,wingUp);
 
         return Mathf.Atan2(verticalComponent, forwardComponent)*Mathf.Rad2Deg;
-
     }
-
 
     public float CalculateLift(float density, float speed, float area, float cl)
     {
