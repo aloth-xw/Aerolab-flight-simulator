@@ -33,7 +33,7 @@ Crear una aplicación de simulación que permita:
 | Diseño de interfaz | ✅ Bocetado |
 | Documento de diseño (GDD) | ✅ En progreso avanzado |
 | Matriz de requisitos | ✅ Definida (v1.1) |
-| Motor de físicas básico | 🔲 Por empezar |
+| Motor de físicas básico | ✅ Por mejorar* |
 | Vehículo controlable (v1) | 🔲 Por empezar |
 | Interfaz gráfica (HUD) implementada | 🔲 Por empezar |
 | Escenario/planeta base | 🔲 Por empezar |
