@@ -1050,7 +1050,7 @@ Transform:
   m_GameObject: {fileID: 619149735}
   serializedVersion: 2
   m_LocalRotation: {x: 0.026176924, y: 0, z: 0, w: 0.99965733}
-  m_LocalPosition: {x: -5, y: 0.5, z: 0}
+  m_LocalPosition: {x: -5, y: 0, z: 0}
   m_LocalScale: {x: 8, y: 0.15, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1069,12 +1069,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 599e593f6d73dc14cae4a4f013aa75b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WingConfig
-  area: 10
+  area: 20
   position: {x: 0, y: 0, z: 0}
   orientation: {x: 0, y: 0, z: 0}
   airfoil: {fileID: 2051010740}
   side: 0
-  aileronEffect: 0.6
+  aileronEffect: 1
   aileronInput: 0
   surfaceType: 0
 --- !u!65 &619149738
@@ -1233,7 +1233,7 @@ Transform:
   m_GameObject: {fileID: 1036178373}
   serializedVersion: 2
   m_LocalRotation: {x: 0.026176924, y: 0, z: 0, w: 0.99965733}
-  m_LocalPosition: {x: 5, y: 0.5, z: 0}
+  m_LocalPosition: {x: 5, y: 0, z: 0}
   m_LocalScale: {x: 8, y: 0.15, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1252,12 +1252,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 599e593f6d73dc14cae4a4f013aa75b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WingConfig
-  area: 10
+  area: 20
   position: {x: 0, y: 0, z: 0}
   orientation: {x: 0, y: 0, z: 0}
   airfoil: {fileID: 568336417}
   side: 1
-  aileronEffect: 0.6
+  aileronEffect: 1
   aileronInput: 0
   surfaceType: 0
 --- !u!65 &1036178376
@@ -1592,11 +1592,11 @@ MonoBehaviour:
   yawAction: {fileID: 649295761546468314, guid: 7b1917ffa7cbf784bbd2b21d17031104, type: 3}
   controlResponse: 5
   maxPitchRate: 60
-  pitchControlStrength: 100
+  pitchControlStrength: 300
   maxYawRate: 60
   yawControlStrength: 100
   targetAoA: 5
-  aoaCorrectionStrength: 20
+  aoaCorrectionStrength: 50
 --- !u!114 &1230966577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1697,7 +1697,7 @@ Transform:
   m_GameObject: {fileID: 1230966575}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1868,12 +1868,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 599e593f6d73dc14cae4a4f013aa75b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WingConfig
-  area: 2
+  area: 4
   position: {x: 0, y: 0, z: 0}
   orientation: {x: 0, y: 0, z: 0}
   airfoil: {fileID: 349021243}
   side: 0
-  aileronEffect: 1
+  aileronEffect: 0
   aileronInput: 0
   surfaceType: 1
 --- !u!65 &1513073511

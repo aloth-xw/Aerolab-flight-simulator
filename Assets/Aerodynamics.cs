@@ -25,7 +25,7 @@ public class Aerodynamics : MonoBehaviour
         Vector3 angularVelocity = physicsBody.GetAngularVelocity();
 
         Vector3 pointVelocity = physicsBody.GetVelocity() + Vector3.Cross(angularVelocity, WorldPosition-centreOfMass);
-        return wind - pointVelocity;
+        return pointVelocity - wind;
     }
 
     public float GetAngleOfAttack(Vector3 wingForward, Vector3 wingUp, Vector3 relativeAirFlow)
@@ -33,13 +33,13 @@ public class Aerodynamics : MonoBehaviour
         if (relativeAirFlow.sqrMagnitude < 1f)
             return 0f;
 
-        Vector3 velocityDirection = -relativeAirFlow.normalized;
+        Vector3 velocityDirection = relativeAirFlow.normalized;
+        Vector3 localFlow = transform.InverseTransformDirection(relativeAirFlow);
+         return Mathf.Atan2(-localFlow.y, localFlow.z) * Mathf.Rad2Deg;
+        //float forwardComponent = Vector3.Dot(velocityDirection,wingForward);
+        //float verticalComponent = Vector3.Dot(velocityDirection,wingUp);
 
-
-        float forwardComponent = Vector3.Dot(velocityDirection,wingForward);
-        float verticalComponent = Vector3.Dot(velocityDirection,wingUp);
-
-        return Mathf.Atan2(verticalComponent, forwardComponent)*Mathf.Rad2Deg;
+        //return Mathf.Atan2(verticalComponent, forwardComponent)*Mathf.Rad2Deg;
     }
 
     public float CalculateLift(float density, float speed, float area, float cl)
@@ -69,7 +69,7 @@ public class Aerodynamics : MonoBehaviour
         if (relativeAirFlow.sqrMagnitude < 0.0001f)
             return Vector3.zero;
 
-        return relativeAirFlow.normalized; 
+        return -relativeAirFlow.normalized; 
     }
 
     public void ApplyForce(Vector3 direction, float magnitude, Vector3 position)

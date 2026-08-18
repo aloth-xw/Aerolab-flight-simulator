@@ -30,7 +30,7 @@ public class FlightControls : MonoBehaviour
     private float maxPitchRate = 60f;
 
     [SerializeField]
-    private float pitchControlStrength = 100f;
+    private float pitchControlStrength = 0f;
 
 
     [SerializeField]
@@ -84,7 +84,6 @@ public class FlightControls : MonoBehaviour
       throttle = Mathf.Clamp01(throttle);
 
       engine.SetThrottle(throttle);
-      Debug.Log("Input: " + throttleInput + " | Throttle acumulado: " + throttle);
       
 
       float targetRollInput = rollAction.action.ReadValue<float>();
@@ -106,7 +105,7 @@ public class FlightControls : MonoBehaviour
         float aoaCorrectionTorque = aoaError * aoaCorrectionStrength;
 
         pitchTorque = (pitchError * pitchControlStrength) + aoaCorrectionTorque;
-        pitchTorque = Mathf.Clamp(pitchTorque, -2000f, 2000f);
+        //pitchTorque = Mathf.Clamp(pitchTorque, -2000f, 2000f);
 
       float targetYawRate = yawInput * maxYawRate;
       float currentYawRate = Vector3.Dot(physicsBody.GetAngularVelocity(),physicsBody.GetUp())*Mathf.Rad2Deg;
@@ -118,7 +117,7 @@ public class FlightControls : MonoBehaviour
 
     private void FixedUpdate()
     {
-        physicsBody.AddTorque(physicsBody.GetRight()*pitchTorque);
+        physicsBody.AddTorque(-physicsBody.GetRight()*pitchTorque);
         physicsBody.AddTorque(physicsBody.GetUp()*yawTorque);
     }
 }

@@ -86,6 +86,7 @@ public class WingConfig : MonoBehaviour
     private void FixedUpdate()
     {
         Aerodynamics aerodynamics = GetComponentInParent<Aerodynamics>();
+        PhysicsBody physicsBody = GetComponentInParent<PhysicsBody>();
 
         Vector3 wingForward = transform.forward;
         Vector3 wingUp = transform.up;
@@ -96,14 +97,28 @@ public class WingConfig : MonoBehaviour
         float aoa = aerodynamics.GetAngleOfAttack(wingForward,wingUp, relativeAirFlow);
         currentAoA = aoa;
 
-        float cl = airfoil.GetLiftCoefficient(Mathf.Clamp(aoa, -20f, 20f));
-        float cd = airfoil.GetDragCoefficient(Mathf.Clamp(aoa, -20f, 20f));
+        float cl = 0f;
+        float cd = 0f;
+
+        if (Mathf.Abs(aoa) <= 90f)
+        {
+            float aerodynamicAoA = Mathf.Clamp(aoa, -20f, 20f);
+
+            cl = airfoil.GetLiftCoefficient(aerodynamicAoA);
+            cd = airfoil.GetDragCoefficient(aerodynamicAoA);
+        }
+        else
+        {
+            cl = 0f;
+            cd = airfoil.GetDragCoefficient(20f);
+        }
 
         float speed = relativeAirFlow.magnitude;
         float density = aerodynamics.GetAirDensity();
 
 
         float lift = aerodynamics.CalculateLift(density,speed,area,cl);
+
 
         float liftMultiplier = 1f;
         
@@ -123,6 +138,13 @@ public class WingConfig : MonoBehaviour
         currentDrag = aerodynamics.CalculateDrag(density,speed,area,cd);
 
         Vector3 liftDirection = aerodynamics.GetLiftDirection(wingUp, relativeAirFlow);
+
+        Debug.Log(
+    gameObject.name +
+    " | Pos: " + transform.position +
+    " | LiftDir: " + liftDirection +
+    " | Lift: " + lift
+);
 
         Vector3 dragDirection = aerodynamics.GetDragDirection(relativeAirFlow);
 

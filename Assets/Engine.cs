@@ -3,7 +3,7 @@ using UnityEngine;
 public class Engine : MonoBehaviour
 {
   [SerializeField]
-  private float maxThrust = 5000f;
+  private float maxThrust = 20000f;
 
   [SerializeField]
   [Range(0f, 1f)]
