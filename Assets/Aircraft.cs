@@ -92,6 +92,6 @@ public class Aircraft : MonoBehaviour
 
     private void FixedUpdate()
     {
-
+        Debug.Log(GetAltitude());
     }
 }

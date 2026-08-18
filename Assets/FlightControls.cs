@@ -39,7 +39,7 @@ public class FlightControls : MonoBehaviour
     private float yawControlStrength = 100f;
 
     [SerializeField] private float targetAoA = 5f;
-    [SerializeField] private float aoaCorrectionStrength = 20f;
+    [SerializeField] private float aoaCorrectionStrength = 150f;
 
     private float throttle;
     private float throttleInput;
@@ -106,6 +106,7 @@ public class FlightControls : MonoBehaviour
         float aoaCorrectionTorque = aoaError * aoaCorrectionStrength;
 
         pitchTorque = (pitchError * pitchControlStrength) + aoaCorrectionTorque;
+        pitchTorque = Mathf.Clamp(pitchTorque, -2000f, 2000f);
 
       float targetYawRate = yawInput * maxYawRate;
       float currentYawRate = Vector3.Dot(physicsBody.GetAngularVelocity(),physicsBody.GetUp())*Mathf.Rad2Deg;
