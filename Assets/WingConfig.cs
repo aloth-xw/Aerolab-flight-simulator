@@ -139,19 +139,13 @@ public class WingConfig : MonoBehaviour
 
         Vector3 liftDirection = aerodynamics.GetLiftDirection(wingUp, relativeAirFlow);
 
-        Debug.Log(
-    gameObject.name +
-    " | Pos: " + transform.position +
-    " | LiftDir: " + liftDirection +
-    " | Lift: " + lift
-);
-
         Vector3 dragDirection = aerodynamics.GetDragDirection(relativeAirFlow);
+
+        lift = Mathf.Clamp(lift, -50000f, 50000f);
+        currentDrag = Mathf.Clamp(currentDrag, 0f, 50000f);
 
         aerodynamics.ApplyForce(liftDirection, lift, transform.position);
         aerodynamics.ApplyForce(dragDirection, currentDrag, transform.position);
-
-        Debug.Log(gameObject.name + " | AoA: " + aoa + " | Lift: " + lift + " | Drag: " + currentDrag);
       
     }
 }

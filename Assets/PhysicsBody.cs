@@ -3,10 +3,11 @@ using UnityEngine;
 public class PhysicsBody : MonoBehaviour
 {
   private Rigidbody rb;
-
   
     private Vector3 previousVelocity;
     private Vector3 acceleration;
+    [SerializeField] private float maxSafeAngularSpeed = 3f;
+    //[SerializeField] private float emergencyDampingStrength = 500f;
 
   private void Awake()
     {
@@ -14,6 +15,7 @@ public class PhysicsBody : MonoBehaviour
 
         rb = GetComponent<Rigidbody>();
         rb.centerOfMass = Vector3.zero;
+        rb.maxAngularVelocity = 15f;
     }
 
     public Vector3 GetCenterOfMass()
@@ -75,6 +77,11 @@ public class PhysicsBody : MonoBehaviour
         return transform.TransformDirection(direction);
     }
 
+    public void SetVelocity(Vector3 velocity)
+    {
+        rb.linearVelocity = velocity;
+    }
+
     public void AddTorque(Vector3 torque)
     {
         rb.AddTorque(torque);
@@ -90,7 +97,12 @@ public class PhysicsBody : MonoBehaviour
     {
         Vector3 currentVelocity = rb.linearVelocity;
         acceleration = (currentVelocity - previousVelocity) / Time.fixedDeltaTime;
-                previousVelocity = currentVelocity;
+        previousVelocity = currentVelocity;
+
+        if (rb.angularVelocity.magnitude > maxSafeAngularSpeed)
+        {
+            rb.angularVelocity = rb.angularVelocity.normalized * maxSafeAngularSpeed; 
+        }
     }
 
 }

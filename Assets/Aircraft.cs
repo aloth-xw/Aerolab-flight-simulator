@@ -8,6 +8,9 @@ public class Aircraft : MonoBehaviour
 
     private WingConfig[] aeroSurfaces;
 
+    [SerializeField]
+    private float maxSpeed = 150f;
+
     private void Awake()
     {
         physicsBody = GetComponent<PhysicsBody>();
@@ -90,8 +93,13 @@ public class Aircraft : MonoBehaviour
         return 0f;
     }
 
+
     private void FixedUpdate()
     {
-        Debug.Log(GetAltitude());
+    if (physicsBody.GetVelocity().magnitude > maxSpeed)
+        {
+            Vector3 clampedVelocity = physicsBody.GetVelocity().normalized * maxSpeed;
+            physicsBody.SetVelocity(clampedVelocity);
+        }
     }
 }

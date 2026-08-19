@@ -30,7 +30,7 @@ public class FlightControls : MonoBehaviour
     private float maxPitchRate = 60f;
 
     [SerializeField]
-    private float pitchControlStrength = 0f;
+    private float pitchControlStrength = 100f;
 
 
     [SerializeField]
@@ -39,7 +39,7 @@ public class FlightControls : MonoBehaviour
     private float yawControlStrength = 100f;
 
     [SerializeField] private float targetAoA = 5f;
-    [SerializeField] private float aoaCorrectionStrength = 150f;
+    [SerializeField] private float aoaCorrectionStrength = 15f;
 
     private float throttle;
     private float throttleInput;
@@ -105,14 +105,26 @@ public class FlightControls : MonoBehaviour
         float aoaCorrectionTorque = aoaError * aoaCorrectionStrength;
 
         pitchTorque = (pitchError * pitchControlStrength) + aoaCorrectionTorque;
-        //pitchTorque = Mathf.Clamp(pitchTorque, -2000f, 2000f);
+        //pitchTorque = Mathf.Clamp(pitchTorque, -20000f, 20000f);
+        float maxPitchAngularSpeed = 1.5f;
+        if (Mathf.Abs(currentPitchRate*Mathf.Deg2Rad) > maxPitchAngularSpeed)
+        {
+            pitchTorque = 0f;
+        }
 
       float targetYawRate = yawInput * maxYawRate;
       float currentYawRate = Vector3.Dot(physicsBody.GetAngularVelocity(),physicsBody.GetUp())*Mathf.Rad2Deg;
       float yawError = targetYawRate - currentYawRate;
       yawTorque = yawError * yawControlStrength;
 
-      Debug.Log("AoA actual: " + aircraft.GetCurrentAoA() + " | aoaError: " + aoaError + " | correctionTorque: " + aoaCorrectionTorque);
+      if (Keyboard.current.rKey.wasPressedThisFrame)
+        {
+            transform.position = Vector3.zero + Vector3.up * 50f;
+            transform.rotation = Quaternion.identity;
+            GetComponent<Rigidbody>().linearVelocity = transform.forward * 40f;
+            GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+        }
+
     }
 
     private void FixedUpdate()
