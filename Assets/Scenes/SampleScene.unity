@@ -823,6 +823,7 @@ GameObject:
   - component: {fileID: 330585547}
   - component: {fileID: 330585548}
   - component: {fileID: 330585549}
+  - component: {fileID: 330585550}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -961,7 +962,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FollowCamera
   target: {fileID: 1230966583}
-  offset: {x: 0, y: 5, z: -20}
+  offset: {x: 0, y: 2.5, z: -10}
   positionSmoothTime: 0.15
   rotationSmoothSpeed: 3
   shakeCamera: {fileID: 330585549}
@@ -987,6 +988,58 @@ MonoBehaviour:
   shakeFrequency: 25
   positionShakeAmount: 0.15
   rotationShakeAmount: 1.5
+--- !u!114 &330585550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57c9c48029c67154a8f467e6af0806c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DynamicFOV
+  mainCamera: {fileID: 330585545}
+  aircraft: {fileID: 1230966581}
+  baseFOV: 60
+  maxFOV: 67
+  minSpeed: 30
+  maxSpeed: 200
+  changeSpeed: 3
+  speedResponseCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.48819166
+      value: 0.8667451
+      inSlope: 1.056942
+      outSlope: 1.056942
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1.0111084
+      value: 0.012699127
+      inSlope: -2.6175861
+      outSlope: -2.6175861
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.16466941
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &349021241
 GameObject:
   m_ObjectHideFlags: 0
@@ -2918,7 +2971,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4278255615
-  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
+  m_fontColor: {r: 0, g: 0, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
