@@ -105,12 +105,9 @@ public class FlightControls : MonoBehaviour
         float aoaCorrectionTorque = aoaError * aoaCorrectionStrength;
 
         pitchTorque = (pitchError * pitchControlStrength) + aoaCorrectionTorque;
-        //pitchTorque = Mathf.Clamp(pitchTorque, -20000f, 20000f);
+        pitchTorque = Mathf.Clamp(pitchTorque, -20000f, 20000f);
         float maxPitchAngularSpeed = 1.5f;
-        if (Mathf.Abs(currentPitchRate*Mathf.Deg2Rad) > maxPitchAngularSpeed)
-        {
-            pitchTorque = 0f;
-        }
+      
 
       float targetYawRate = yawInput * maxYawRate;
       float currentYawRate = Vector3.Dot(physicsBody.GetAngularVelocity(),physicsBody.GetUp())*Mathf.Rad2Deg;
