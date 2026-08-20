@@ -368,6 +368,7 @@ GameObject:
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
   - component: {fileID: 330585548}
+  - component: {fileID: 330585549}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -509,6 +510,29 @@ MonoBehaviour:
   offset: {x: 0, y: 5, z: -20}
   positionSmoothTime: 0.15
   rotationSmoothSpeed: 3
+  shakeCamera: {fileID: 330585549}
+--- !u!114 &330585549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 145e4d68897bd0f498b92eb2b5e9e8b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShakeCamera
+  aircraft: {fileID: 1230966581}
+  stallAoAThreshold: 15
+  AoAShakeStartMargin: 5
+  maxAoAShakeIntensity: 0.3
+  speedShakeThreshold: 100
+  speedShakeRange: 100
+  maxSpeedShakeIntensity: 0.25
+  shakeFrequency: 25
+  positionShakeAmount: 0.15
+  rotationShakeAmount: 1.5
 --- !u!1 &349021241
 GameObject:
   m_ObjectHideFlags: 0
