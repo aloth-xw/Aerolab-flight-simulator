@@ -136,8 +136,8 @@ git clone https://github.com/usuario/nombre-repo.git
 ## Roadmap
  
 - [x] Fase 1 — Definición y diseño (interfaz, modelo físico, alcance del MVP)
-- [ ] Fase 2 — Motor de físicas y vehículo controlable
-- [ ] Fase 3 — Interfaz gráfica y HUD
+- [x] Fase 2 — Motor de físicas y vehículo controlable
+- [x] Fase 3 — Interfaz gráfica y HUD
 - [ ] Fase 4 — Asistente IA (v1, basado en reglas)
 - [ ] Fase 5 — corrección de errores
 - [ ] Fase 6 — Documentación y vídeo de presentación
