@@ -3,6 +3,13 @@ using UnityEngine.InputSystem;
 
 public class FlightControls : MonoBehaviour
 {
+    //VALORES ACTUALES (21 agosto)
+    //pitchControlStrength: 300
+    //aoaCorrectionSTrength: 50
+    // yawControlStrength: 300
+    // Inertia Tensor: (5417, 13667, 8417)
+    // Angulo alas: +3°, cola: -2°
+    // maxSafeAngularSpeed: 3
     
     private Engine engine;
     private PhysicsBody physicsBody;
