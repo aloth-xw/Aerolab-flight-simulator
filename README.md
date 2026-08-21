@@ -34,7 +34,7 @@ Crear una aplicación de simulación que permita:
 | Documento de diseño (GDD) | ✅ En progreso avanzado |
 | Matriz de requisitos | ✅ Definida (v1.1) |
 | Motor de físicas básico | ✅ Por mejorar* |
-| Vehículo controlable (v1) | 🔲 Por empezar |
+| Vehículo controlable (v1) | ✅ Controlable |
 | Interfaz gráfica (HUD) implementada | 🔲 Por empezar |
 | Escenario/planeta base | 🔲 Por empezar |
 | Asistente IA | 🔲 Por empezar |
@@ -136,8 +136,8 @@ git clone https://github.com/usuario/nombre-repo.git
 ## Roadmap
  
 - [x] Fase 1 — Definición y diseño (interfaz, modelo físico, alcance del MVP)
-- [ ] Fase 2 — Motor de físicas y vehículo controlable
-- [ ] Fase 3 — Interfaz gráfica y HUD
+- [x] Fase 2 — Motor de físicas y vehículo controlable
+- [x] Fase 3 — Interfaz gráfica y HUD
 - [ ] Fase 4 — Asistente IA (v1, basado en reglas)
 - [ ] Fase 5 — corrección de errores
 - [ ] Fase 6 — Documentación y vídeo de presentación
