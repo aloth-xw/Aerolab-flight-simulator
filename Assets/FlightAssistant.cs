@@ -36,7 +36,6 @@ public class FlightAssistant : MonoBehaviour
 
             if (!string.IsNullOrEmpty(currentWarning) && coolDownTimer <= 0f)
             {
-                Debug.Log("[Asistente]"+currentWarning);
                 coolDownTimer = messageCooldown;
             }
         }

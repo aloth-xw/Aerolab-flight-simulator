@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PhysicsBody : MonoBehaviour
 {
@@ -11,8 +12,6 @@ public class PhysicsBody : MonoBehaviour
 
   private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
-
         rb = GetComponent<Rigidbody>();
         rb.centerOfMass = Vector3.zero;
         rb.maxAngularVelocity = 15f;
@@ -87,11 +86,25 @@ public class PhysicsBody : MonoBehaviour
         rb.AddTorque(torque);
     }
 
+    
+
     private void Start()
         {
-            rb.linearVelocity = transform.forward * 40f;
+            transform.position = new Vector3(1666f, 3f, 1000f);
+            rb.linearVelocity = transform.forward * 50f;
             previousVelocity = rb.linearVelocity;
         }
+
+    private void Update()
+    {
+        if (Keyboard.current.rKey.wasPressedThisFrame)
+        {
+            transform.position = new Vector3(1666f, 3f, 1000f);
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+            rb.linearVelocity = transform.forward * 40f;
+            rb.angularVelocity = Vector3.zero;
+        }
+    }
 
     public void FixedUpdate()
     {
