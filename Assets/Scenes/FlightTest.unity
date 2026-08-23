@@ -495,6 +495,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 119144979}
   m_CullTransparentMesh: 1
+--- !u!1 &181165892
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 181165893}
+  m_Layer: 0
+  m_Name: RightGearPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &181165893
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 181165892}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.13, y: -2.34, z: -2.77}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1230966583}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &202476966
 GameObject:
   m_ObjectHideFlags: 0
@@ -2378,6 +2409,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7add8cdfffefd94cbdb87e64f7d4785, type: 3}
+--- !u!1 &955084907
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 955084908}
+  m_Layer: 0
+  m_Name: LeftGearPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &955084908
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 955084907}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.85, y: -2.34, z: -2.77}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1230966583}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &977561510
 GameObject:
   m_ObjectHideFlags: 0
@@ -2842,6 +2904,37 @@ RectTransform:
   m_AnchoredPosition: {x: 250, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1136758689
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1136758690}
+  m_Layer: 0
+  m_Name: NoseGearPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1136758690
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1136758689}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.9, y: -2.34, z: 3.86}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1230966583}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1137597278
 GameObject:
   m_ObjectHideFlags: 0
@@ -2996,6 +3089,7 @@ GameObject:
   - component: {fileID: 1230966578}
   - component: {fileID: 1230966577}
   - component: {fileID: 1230966576}
+  - component: {fileID: 1230966585}
   m_Layer: 0
   m_Name: AircraftRoot
   m_TagString: Untagged
@@ -3026,6 +3120,8 @@ MonoBehaviour:
   yawControlStrength: 300
   targetAoA: 5
   aoaCorrectionStrength: 50
+  landingGear: {fileID: 0}
+  groundSteerStrength: 3000
 --- !u!114 &1230966577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3137,6 +3233,9 @@ Transform:
   - {fileID: 1036178374}
   - {fileID: 1513073509}
   - {fileID: 561695941}
+  - {fileID: 1136758690}
+  - {fileID: 181165893}
+  - {fileID: 955084908}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1230966584
@@ -3160,6 +3259,36 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1230966585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1230966575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a39792dc10cd24c4c9668fc7eef64eff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LandingGear
+  physicsBody: {fileID: 1230966580}
+  noseGear:
+    point: {fileID: 1136758690}
+    grounded: 0
+  leftMainGear:
+    point: {fileID: 955084908}
+    grounded: 0
+  rightMainGear:
+    point: {fileID: 181165893}
+    grounded: 0
+  suspensionRestLength: 1.5
+  suspensionStrength: 8000
+  suspensionDamping: 800
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  sideFrictionStrength: 3000
+  rollingFriction: 5
 --- !u!1 &1292615859
 GameObject:
   m_ObjectHideFlags: 0
