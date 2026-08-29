@@ -520,7 +520,7 @@ Transform:
   m_GameObject: {fileID: 181165892}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.13, y: -2.34, z: -2.77}
+  m_LocalPosition: {x: 1.13, y: 0.75, z: -2.77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -908,89 +908,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1001 &263012035
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1230966583}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 0fd0b4d868001d549a50aa3e027d109a, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.12
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0fd0b4d868001d549a50aa3e027d109a, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.12
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0fd0b4d868001d549a50aa3e027d109a, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.12
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0fd0b4d868001d549a50aa3e027d109a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0fd0b4d868001d549a50aa3e027d109a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0fd0b4d868001d549a50aa3e027d109a, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0fd0b4d868001d549a50aa3e027d109a, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0fd0b4d868001d549a50aa3e027d109a, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0fd0b4d868001d549a50aa3e027d109a, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0fd0b4d868001d549a50aa3e027d109a, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0fd0b4d868001d549a50aa3e027d109a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0fd0b4d868001d549a50aa3e027d109a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 0fd0b4d868001d549a50aa3e027d109a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 0fd0b4d868001d549a50aa3e027d109a, type: 3}
-      propertyPath: m_Name
-      value: f-a-18e_super_hornet_usa
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 0fd0b4d868001d549a50aa3e027d109a, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 0fd0b4d868001d549a50aa3e027d109a, type: 3}
---- !u!4 &263012036 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0fd0b4d868001d549a50aa3e027d109a, type: 3}
-  m_PrefabInstance: {fileID: 263012035}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &263012037 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0fd0b4d868001d549a50aa3e027d109a, type: 3}
-  m_PrefabInstance: {fileID: 263012035}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &310000155
 GameObject:
   m_ObjectHideFlags: 0
@@ -2487,20 +2404,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: f-15c_eagle_usa
       objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: b7add8cdfffefd94cbdb87e64f7d4785, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7add8cdfffefd94cbdb87e64f7d4785, type: 3}
---- !u!1 &928431174 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b7add8cdfffefd94cbdb87e64f7d4785, type: 3}
-  m_PrefabInstance: {fileID: 928431173}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &955084907
 GameObject:
   m_ObjectHideFlags: 0
@@ -2526,7 +2434,7 @@ Transform:
   m_GameObject: {fileID: 955084907}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.85, y: -2.34, z: -2.77}
+  m_LocalPosition: {x: -1.85, y: 0.75, z: -2.77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3021,7 +2929,7 @@ Transform:
   m_GameObject: {fileID: 1136758689}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.9, y: -2.34, z: 3.86}
+  m_LocalPosition: {x: -0.9, y: 0.75, z: 3.86}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3182,7 +3090,6 @@ GameObject:
   - component: {fileID: 1230966577}
   - component: {fileID: 1230966576}
   - component: {fileID: 1230966585}
-  - component: {fileID: 1230966586}
   m_Layer: 0
   m_Name: AircraftRoot
   m_TagString: Untagged
@@ -3326,7 +3233,6 @@ Transform:
   - {fileID: 1036178374}
   - {fileID: 1513073509}
   - {fileID: 561695941}
-  - {fileID: 263012036}
   - {fileID: 1136758690}
   - {fileID: 181165893}
   - {fileID: 955084908}
@@ -3383,21 +3289,6 @@ MonoBehaviour:
     m_Bits: 1
   sideFrictionStrength: 3000
   rollingFriction: 5
---- !u!114 &1230966586
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1230966575}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8751b3dbf8cbecb43a73f7d9e2ed0e8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AircarftVisualSelector
-  aircraftModels:
-  - {fileID: 928431174}
-  - {fileID: 263012037}
 --- !u!1 &1292615859
 GameObject:
   m_ObjectHideFlags: 0
