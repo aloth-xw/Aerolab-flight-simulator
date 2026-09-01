@@ -35,7 +35,7 @@ Crear una aplicación de simulación que permita:
 | Matriz de requisitos | ✅ Definida (v1.1) |
 | Motor de físicas básico | ✅ Por mejorar* |
 | Vehículo controlable (v1) | ✅ Controlable |
-| Interfaz gráfica (HUD) implementada | 🔲 Por empezar |
+| Interfaz gráfica (HUD) implementada | ✅ Implementada |
 | Escenario/planeta base | 🔲 Por empezar |
 | Asistente IA | 🔲 Por empezar |
 | Múltiples motores/aviones | 🔲 Futuro (post-MVP) |
