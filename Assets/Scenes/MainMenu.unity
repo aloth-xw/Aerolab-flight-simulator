@@ -898,7 +898,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6faf3ded872ef6f469f21a53c0da0bd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Manager
-  flightSceneName: FlightTest
+  flightSceneName: AircraftSelection
 --- !u!4 &1126512567
 Transform:
   m_ObjectHideFlags: 0

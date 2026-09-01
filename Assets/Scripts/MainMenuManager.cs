@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class Manager : MonoBehaviour
 {
     [SerializeField]
-    private string flightSceneName = "FlightTest";
+    private string flightSceneName = "AircraftSelection";
 
     public void startFlight()
     {

@@ -27,7 +27,8 @@ public class FlightHUD : MonoBehaviour
         flightDataText.text = "SPEED: "+ currentSpeed.ToString("F1")+"m/s\n"
         +"THROTTLE: "+(aircraft.GetThrottle()*100f).ToString("F0")+"\n"
         +"ALTITUDE: "+aircraft.GetAltitude().ToString("F1")+" m"+"\n"
-        +"AOA: "+currentAoA.ToString("F1")+"°";
+        +"AOA: "+currentAoA.ToString("F1")+"°"+"\n"
+        + "FUEL: "+(aircraft.GetFuelPercent()*100f).ToString("F0")+"%";
 
         bool isStalling = Mathf.Abs(currentAoA) >= stallAoAThreshold || 
                          (currentSpeed < minStallSpeed && aircraft.GetAltitude() > 2f);

@@ -3396,8 +3396,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AircarftVisualSelector
   aircraftModels:
-  - {fileID: 928431174}
   - {fileID: 263012037}
+  - {fileID: 928431174}
 --- !u!1 &1292615859
 GameObject:
   m_ObjectHideFlags: 0

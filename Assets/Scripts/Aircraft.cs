@@ -93,6 +93,11 @@ public class Aircraft : MonoBehaviour
         return 0f;
     }
 
+    public float GetFuelPercent()
+    {
+        return engine.GetFuelPercent();
+    }
+
 
     private void FixedUpdate()
     {

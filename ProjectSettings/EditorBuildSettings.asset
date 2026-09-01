@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
+    path: Assets/Scenes/AircraftSelection.unity
+    guid: 0ad2277416ad58f438370be907f5698b
+  - enabled: 1
     path: Assets/Scenes/FlightTest.unity
     guid: 297c1cf583d17a3499a1b5bf6320d6a0
   m_configObjects:

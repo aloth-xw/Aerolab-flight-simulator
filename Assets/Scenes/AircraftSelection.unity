@@ -1242,19 +1242,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 0fd0b4d868001d549a50aa3e027d109a, type: 3}
       propertyPath: m_LocalScale.x
-      value: 5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0fd0b4d868001d549a50aa3e027d109a, type: 3}
       propertyPath: m_LocalScale.y
-      value: 5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0fd0b4d868001d549a50aa3e027d109a, type: 3}
       propertyPath: m_LocalScale.z
-      value: 5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0fd0b4d868001d549a50aa3e027d109a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 30
+      value: 44
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0fd0b4d868001d549a50aa3e027d109a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1702,7 +1702,7 @@ Transform:
   m_GameObject: {fileID: 1011653937}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 303.94714, y: 0, z: 2033.5278}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2418,7 +2418,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AircraftSelectionMaganer
   flightSceneName: FlightTest
   aircraftContainer: {fileID: 1011653938}
-  offsetDistance: 15
+  offsetDistance: 45
   moveSpeed: 6
   totalAircraft: 2
 --- !u!4 &1720161986
@@ -2524,7 +2524,7 @@ Transform:
   m_GameObject: {fileID: 1797390814}
   serializedVersion: 2
   m_LocalRotation: {x: 0.026176924, y: 0, z: 0, w: 0.99965733}
-  m_LocalPosition: {x: 0, y: 10, z: -10}
+  m_LocalPosition: {x: -1.75, y: 3.8087778, z: -20.838879}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2586,10 +2586,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c4b70e9a995bb43986f4679f6b8fbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraHovering
-  target: {fileID: 0}
+  target: {fileID: 1011653938}
   rotationSpeed: 10
-  distance: 12
-  height: 2.5
+  distance: 21
+  height: 3.8
 --- !u!1 &1804255489
 GameObject:
   m_ObjectHideFlags: 0
@@ -2993,15 +2993,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: b7add8cdfffefd94cbdb87e64f7d4785, type: 3}
       propertyPath: m_LocalScale.x
-      value: 5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b7add8cdfffefd94cbdb87e64f7d4785, type: 3}
       propertyPath: m_LocalScale.y
-      value: 5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b7add8cdfffefd94cbdb87e64f7d4785, type: 3}
       propertyPath: m_LocalScale.z
-      value: 5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b7add8cdfffefd94cbdb87e64f7d4785, type: 3}
       propertyPath: m_LocalPosition.x
