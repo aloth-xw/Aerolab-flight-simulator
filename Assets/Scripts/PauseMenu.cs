@@ -11,7 +11,7 @@ public class Pausemenu : MonoBehaviour
 
     private void Awake()
     {
-        if (pausePanel == null)
+        if (pausePanel != null)
             pausePanel.SetActive(false);
     }
 
@@ -35,8 +35,10 @@ public class Pausemenu : MonoBehaviour
     }
     public void Resume()
     {
+        isPaused = false;
         Time.timeScale = 1f;
-        SceneManager.LoadScene(mainMenuSceneName);
+        if (pausePanel != null)
+            pausePanel.SetActive(false);
     }
 
     public void ReturnToMainMenu()
