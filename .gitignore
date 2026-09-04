@@ -17,6 +17,7 @@
 *.slnx
 *.user
 *.userprefs
+*.unitypackage
 
 # OS generated files
 .DS_Store

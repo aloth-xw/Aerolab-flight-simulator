@@ -16,6 +16,8 @@ public class FlightAssistant : MonoBehaviour
     [SerializeField] private float speedThreshold = 130f;
 
     [SerializeField] private float messageCooldown = 2f;
+    [SerializeField] private float warningConfirmTime = 1f;
+    private float idleTimer = 0f;
 
     private string currentWarning = "";
     private float coolDownTimer = 0f;
@@ -69,9 +71,15 @@ public class FlightAssistant : MonoBehaviour
             return "Velocidad excesiva";
         }
 
-        if (throttle <0.05 && altitude > 20f)
+        if (throttle < 0.05f && altitude > 20f)
         {
-            return "Motor en punto muerto";
+            idleTimer += Time.deltaTime;
+            if (idleTimer >= warningConfirmTime)
+                return "Motor al ralentí";
+        }
+        else
+        {
+            idleTimer = 0f;
         }
 
         return "";

@@ -90,7 +90,7 @@ public class PhysicsBody : MonoBehaviour
 
     private void Start()
         {
-            transform.position = new Vector3(1666f, 3f, 1000f);
+            transform.position = new Vector3(1469f, 3f, 745f);
             rb.linearVelocity = transform.forward * 50f;
             previousVelocity = rb.linearVelocity;
         }
@@ -99,7 +99,7 @@ public class PhysicsBody : MonoBehaviour
     {
         if (Keyboard.current.rKey.wasPressedThisFrame)
         {
-            transform.position = new Vector3(1666f, 3f, 1000f);
+            transform.position = new Vector3(1469f, 3f, 745f);
             transform.rotation = Quaternion.Euler(0, 0, 0);
             rb.linearVelocity = transform.forward * 40f;
             rb.angularVelocity = Vector3.zero;

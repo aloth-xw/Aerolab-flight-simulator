@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f983e1b16361e2e4facbdaa91ba9a1bc
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 395062
+  packageName: Free 4K Concrete Texture sample Pack (URP & Built-In)
+  packageVersion: 1.0
+  assetPath: Assets/ADR_Textures/Materials/URP_materials/Concrete_Aggregate.mat
+  uploadId: 958382

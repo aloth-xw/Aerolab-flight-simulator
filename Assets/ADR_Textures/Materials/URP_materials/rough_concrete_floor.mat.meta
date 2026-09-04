@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c8092d00ea605f6478335c0d4fd57a01
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 395062
+  packageName: Free 4K Concrete Texture sample Pack (URP & Built-In)
+  packageVersion: 1.0
+  assetPath: Assets/ADR_Textures/Materials/URP_materials/rough_concrete_floor.mat
+  uploadId: 958382

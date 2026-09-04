@@ -15,6 +15,8 @@ public class FlightHUD : MonoBehaviour
     [SerializeField] private TMP_Text stallWarningText;
     [SerializeField] private GameObject stallWarningPanel;
     [SerializeField] private float flashSpeed = 10f;
+    [SerializeField] private float stallConfirmTime = 0.4f;
+    private float stallTimer = 0f;
 
 
     private void Update()
@@ -30,8 +32,19 @@ public class FlightHUD : MonoBehaviour
         +"AOA: "+currentAoA.ToString("F1")+"°"+"\n"
         + "FUEL: "+(aircraft.GetFuelPercent()*100f).ToString("F0")+"%";
 
-        bool isStalling = Mathf.Abs(currentAoA) >= stallAoAThreshold || 
-                         (currentSpeed < minStallSpeed && aircraft.GetAltitude() > 2f);
+        bool aoaExceeds = Mathf.Abs(currentAoA) >= stallAoAThreshold || 
+                 (currentSpeed < minStallSpeed && aircraft.GetAltitude() > 2f);
+
+        if (aoaExceeds)
+        {
+            stallTimer += Time.deltaTime;
+        }
+        else
+        {
+            stallTimer = 0f;
+        }
+
+        bool isStalling = stallTimer >= stallConfirmTime;
                     
         UpdateStallVisuals(isStalling);
     }
