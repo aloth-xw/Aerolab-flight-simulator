@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f8afce45171c7c244982508f7859fb39
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 112000000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 165180
+  packageName: MapMagic 2
+  packageVersion: 2.1.20
+  assetPath: Assets/MapMagic/Demo/Tutorial/LightingData.asset
+  uploadId: 961788
