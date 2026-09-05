@@ -34,6 +34,7 @@ public class Aerodynamics : MonoBehaviour
             return 0f;
 
         Vector3 velocityDirection = relativeAirFlow.normalized;
+        
         Vector3 localFlow = transform.InverseTransformDirection(relativeAirFlow);
          return Mathf.Atan2(-localFlow.y, localFlow.z) * Mathf.Rad2Deg;
         //float forwardComponent = Vector3.Dot(velocityDirection,wingForward);
