@@ -18,7 +18,7 @@ public class FollowCamera : MonoBehaviour
         Vector3 desiredPosition = target.position + target.TransformDirection(offset);
         transform.position = Vector3.SmoothDamp(transform.position, desiredPosition, ref velocityRef, positionSmoothTime);
 
-        Quaternion desiredRotation = Quaternion.LookRotation(target.position - transform.position, target.up);
+        Quaternion desiredRotation = Quaternion.LookRotation(target.forward, target.up);
         transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, rotationSmoothSpeed * Time.deltaTime);
     
          if (shakeCamera != null)

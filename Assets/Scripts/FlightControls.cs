@@ -4,9 +4,21 @@ using UnityEngine.InputSystem;
 public class FlightControls : MonoBehaviour
 {
     //VALORES ACTUALES (21 agosto)
-    //pitchControlStrength: 300
-    //aoaCorrectionSTrength: 50
-    // yawControlStrength: 300
+
+    //pitchController: 
+        // maxPitchRate: 60
+        // kp: 300 kd: 0 ki:0
+    //aoaSafetyThreshold: 12
+    //aoaSafetyStrength: 3
+
+    //rollController: 
+        // maxRollRate: 60
+        // kp: 700 kd: 50 ki:0
+
+    //yawController: 
+        // maxRollRate: 60
+        // kp: 60 kd: 0 ki:0
+
     // Inertia Tensor: (5417, 13667, 8417)
     // Angulo alas: +3°, cola: -2°
     // maxSafeAngularSpeed: 3
