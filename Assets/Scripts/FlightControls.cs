@@ -54,17 +54,36 @@ public class FlightControls : MonoBehaviour
     [SerializeField] private PIDController pitchRatePID;
 
     [Header("Pitch - Autonivelado")]
-    [SerializeField] private float levelHoldStrength = 2f;
+    [SerializeField] private float levelHoldStrength = 5f;
     [SerializeField] private float inputDeadZone = 0.05f;
 
     [Header("Pitch - protección de pérdida")]
     [SerializeField] private float aoaSafetyThreshold = 12f;
     [SerializeField] private float aoaSafetyStrength = 3f;
 
+
+    [Header("Roll - rate Controller")]
+    [SerializeField] private float maxRollRate = 60f;
+    [SerializeField] private PIDController rollRatePID;
+
+    [Header("Roll - Autonivelado")]
+    [SerializeField] private float rollLevelHoldStrength = 2f;
+
+
+    [Header("Yaw - rate Controller")]
+    [SerializeField] private PIDController yawRatePID;
+
+    [Header("Yaw - Autonivelado (mantener rumbo)")]
+    [SerializeField] private float yawHeadingHoldStrength = 1f;
+    private float lastHeading = 0f;
+    private bool headingInitialized = false;
+
+
     private float throttle;
     private float throttleInput;
 
     private float rollInput;
+    private float rollTorque;
 
     private float pitchInput;
     private float pitchTorque;
@@ -122,11 +141,65 @@ public class FlightControls : MonoBehaviour
             pitchTorque -= excess * aoaSafetyStrength;
         }
 
-        Debug.Log("currentAoA: " + currentAoA + " | pitchTorque final: " + pitchTorque);
-        Debug.Log("pitchInput: " + pitchInput + " | targetRate: " + targetPitchRate + " | currentRate: " + currentPitchRate + " | rateError: " + rateError + " | pitchTorque (PID): " + pitchTorque);
-        Debug.Log("Torque aplicado: " + pitchTorque + " | AngularVel tras aplicar: " + physicsBody.GetAngularVelocity());
-
         this.pitchTorque = pitchTorque;
+    }
+
+    private void UpdateRoll(float deltaTime)
+    {
+        Vector3 worldUpProjected = Vector3.ProjectOnPlane(Vector3.up, transform.forward).normalized;
+        float currentRollAngle = Vector3.SignedAngle(worldUpProjected, transform.up, transform.forward);
+        float currentRollRate = Vector3.Dot(physicsBody.GetAngularVelocity(), physicsBody.GetForward()) * Mathf.Rad2Deg;
+
+        float targetRollRate;
+
+        if (Mathf.Abs(rollInput) > inputDeadZone)
+        {
+            targetRollRate = rollInput * maxRollRate;
+        }
+        else
+        {
+            targetRollRate = -currentRollAngle * rollLevelHoldStrength;
+        }
+
+        float rateError = targetRollRate - currentRollRate;
+        rollTorque = rollRatePID.Update(rateError, deltaTime);
+    }
+
+    private void UpdateYaw(float deltaTime)
+    {
+                if (landingGear != null && landingGear.IsGrounded)
+        {
+            yawTorque = yawInput * groundSteerStrength;
+            headingInitialized = false;
+            return;
+        }
+
+        float currentHeading = transform.eulerAngles.y;
+        float currentYawRate = Vector3.Dot(physicsBody.GetAngularVelocity(), physicsBody.GetUp()) * Mathf.Rad2Deg;
+
+        float targetYawRate;
+
+
+        if (Mathf.Abs(yawInput) > inputDeadZone)
+        {
+            targetYawRate = yawInput * maxYawRate;
+            headingInitialized = false; 
+        }
+        else
+        {
+            if (!headingInitialized)
+            {
+                lastHeading = currentHeading;
+                headingInitialized = true;
+            }
+            float headingError = Mathf.DeltaAngle(currentHeading, lastHeading);
+            targetYawRate = headingError * yawHeadingHoldStrength;
+        }
+
+        float rateError = targetYawRate - currentYawRate;
+        yawTorque = yawRatePID.Update(rateError, deltaTime);
+
+        Debug.Log("currentHeading: " + currentHeading + " | lastHeading: " + lastHeading + " | targetYawRate: " + targetYawRate + " | yawTorque: " + yawTorque);
     }
     
 
@@ -148,7 +221,7 @@ public class FlightControls : MonoBehaviour
       pitchInput = Mathf.MoveTowards(pitchInput,targetPitchInput, controlResponse*Time.deltaTime);
       yawInput = Mathf.MoveTowards(yawInput,targetYawInput, controlResponse*Time.deltaTime);
 
-      aircraft.SetRollInput(rollInput);
+      //aircraft.SetRollInput(rollInput);
 
 
         /*float targetPitchRate = pitchInput * maxPitchRate;
@@ -163,19 +236,11 @@ public class FlightControls : MonoBehaviour
         float maxPitchAngularSpeed = 1.5f;*/
 
         UpdatePitch(Time.deltaTime);
+        UpdateRoll(Time.deltaTime);
+        UpdateYaw(Time.deltaTime);
       
 
-      if (landingGear != null && landingGear.IsGrounded)
-        {
-            yawTorque = yawInput * groundSteerStrength;
-        }
-      else
-        {
-            float targetYawRate = yawInput * maxYawRate;
-            float currentYawRate = Vector3.Dot(physicsBody.GetAngularVelocity(),physicsBody.GetUp())*Mathf.Rad2Deg;
-            float yawError = targetYawRate - currentYawRate;
-            yawTorque = yawError * yawControlStrength;  
-        }
+
         
 
       if (Keyboard.current.rKey.wasPressedThisFrame)
@@ -191,6 +256,7 @@ public class FlightControls : MonoBehaviour
     private void FixedUpdate()
     {
         physicsBody.AddTorque(-physicsBody.GetRight()*pitchTorque);
-        physicsBody.AddTorque(physicsBody.GetUp()*yawTorque);
+        physicsBody.AddTorque(-physicsBody.GetForward() * rollTorque);
+        physicsBody.AddTorque(-physicsBody.GetUp()*yawTorque);
     }
 }
