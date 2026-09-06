@@ -33,11 +33,9 @@ public class FlightControls : MonoBehaviour
 
 
 
-    [SerializeField]
-    private float maxPitchRate = 60f;
+    //[SerializeField] private float maxPitchRate = 60f;
 
-    [SerializeField]
-    private float pitchControlStrength = 100f;
+   // [SerializeField] private float pitchControlStrength = 100f;
 
 
     [SerializeField]
@@ -45,11 +43,23 @@ public class FlightControls : MonoBehaviour
     [SerializeField]
     private float yawControlStrength = 100f;
 
-    [SerializeField] private float targetAoA = 5f;
-    [SerializeField] private float aoaCorrectionStrength = 15f;
+   // [SerializeField] private float targetAoA = 5f;
+    //[SerializeField] private float aoaCorrectionStrength = 15f;
 
     [SerializeField] private LandingGear landingGear;
     [SerializeField] private float groundSteerStrength = 3000f;
+
+    [Header("Ptch - rate Controller")]
+    [SerializeField] private float maxPitchRate = 40f;
+    [SerializeField] private PIDController pitchRatePID;
+
+    [Header("Pitch - Autonivelado")]
+    [SerializeField] private float levelHoldStrength = 2f;
+    [SerializeField] private float inputDeadZone = 0.05f;
+
+    [Header("Pitch - protección de pérdida")]
+    [SerializeField] private float aoaSafetyThreshold = 12f;
+    [SerializeField] private float aoaSafetyStrength = 3f;
 
     private float throttle;
     private float throttleInput;
@@ -86,6 +96,40 @@ public class FlightControls : MonoBehaviour
         yawAction.action.Disable();
     }
 
+    private void UpdatePitch(float deltaTime)
+    {
+        float currentPitchAngle = Mathf.Asin(Mathf.Clamp(transform.forward.y, -1f, 1f)) * Mathf.Rad2Deg;
+        float currentPitchRate = Vector3.Dot(physicsBody.GetAngularVelocity(), physicsBody.GetRight()) * Mathf.Rad2Deg;
+
+        float targetPitchRate;
+
+        if (Mathf.Abs(pitchInput) > inputDeadZone)
+        {
+            targetPitchRate = pitchInput * maxPitchRate;
+        }
+        else
+        {
+            targetPitchRate = -currentPitchAngle * levelHoldStrength;
+        }
+
+        float rateError = targetPitchRate - currentPitchRate;
+        float pitchTorque = pitchRatePID.Update(rateError, deltaTime);
+
+        float currentAoA = aircraft.GetCurrentAoA();
+        if (currentAoA > aoaSafetyThreshold)
+        {
+            float excess = currentAoA - aoaSafetyThreshold;
+            pitchTorque -= excess * aoaSafetyStrength;
+        }
+
+        Debug.Log("currentAoA: " + currentAoA + " | pitchTorque final: " + pitchTorque);
+        Debug.Log("pitchInput: " + pitchInput + " | targetRate: " + targetPitchRate + " | currentRate: " + currentPitchRate + " | rateError: " + rateError + " | pitchTorque (PID): " + pitchTorque);
+        Debug.Log("Torque aplicado: " + pitchTorque + " | AngularVel tras aplicar: " + physicsBody.GetAngularVelocity());
+
+        this.pitchTorque = pitchTorque;
+    }
+    
+
     private void Update()
     {
       throttleInput = throttleAction.action.ReadValue<float>();
@@ -107,7 +151,7 @@ public class FlightControls : MonoBehaviour
       aircraft.SetRollInput(rollInput);
 
 
-        float targetPitchRate = pitchInput * maxPitchRate;
+        /*float targetPitchRate = pitchInput * maxPitchRate;
         float currentPitchRate = Vector3.Dot(physicsBody.GetAngularVelocity(),physicsBody.GetRight())*Mathf.Rad2Deg;
         float pitchError = targetPitchRate - currentPitchRate;
 
@@ -116,7 +160,9 @@ public class FlightControls : MonoBehaviour
 
         pitchTorque = (pitchError * pitchControlStrength) + aoaCorrectionTorque;
         pitchTorque = Mathf.Clamp(pitchTorque, -20000f, 20000f);
-        float maxPitchAngularSpeed = 1.5f;
+        float maxPitchAngularSpeed = 1.5f;*/
+
+        UpdatePitch(Time.deltaTime);
       
 
       if (landingGear != null && landingGear.IsGrounded)
