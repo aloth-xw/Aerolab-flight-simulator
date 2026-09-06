@@ -10,6 +10,8 @@ public class PhysicsBody : MonoBehaviour
     [SerializeField] private float maxSafeAngularSpeed = 3f;
     //[SerializeField] private float emergencyDampingStrength = 500f;
 
+    [SerializeField] private float velocityRealignStrength = 2f;
+
   private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -116,6 +118,15 @@ public class PhysicsBody : MonoBehaviour
         {
             rb.angularVelocity = rb.angularVelocity.normalized * maxSafeAngularSpeed; 
         }
+        
+        float speed = rb.linearVelocity.magnitude;
+    
+        if (speed > 0.5f)
+        {
+            Vector3 currentDir = rb.linearVelocity.normalized;
+            Vector3 desiredDir = transform.forward;
+            Vector3 newDir = Vector3.Slerp(currentDir, desiredDir, velocityRealignStrength * Time.fixedDeltaTime);
+            rb.linearVelocity = newDir * speed; 
+        }
     }
-
 }

@@ -210,8 +210,6 @@ public class FlightControls : MonoBehaviour
 
         float rateError = targetYawRate - currentYawRate;
         yawTorque = yawRatePID.Update(rateError, deltaTime);
-
-        Debug.Log("currentHeading: " + currentHeading + " | lastHeading: " + lastHeading + " | targetYawRate: " + targetYawRate + " | yawTorque: " + yawTorque);
     }
     
 
