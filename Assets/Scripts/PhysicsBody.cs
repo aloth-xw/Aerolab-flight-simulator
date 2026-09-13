@@ -17,6 +17,10 @@ public class PhysicsBody : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.centerOfMass = Vector3.zero;
         rb.maxAngularVelocity = 15f;
+
+        transform.position = new Vector3(1469f, 3f, 745f);
+        rb.linearVelocity = transform.forward * 50f;
+        previousVelocity = rb.linearVelocity;
     }
 
     public Vector3 GetCenterOfMass()
@@ -88,14 +92,6 @@ public class PhysicsBody : MonoBehaviour
         rb.AddTorque(torque);
     }
 
-    
-
-    private void Start()
-        {
-            transform.position = new Vector3(1469f, 3f, 745f);
-            rb.linearVelocity = transform.forward * 50f;
-            previousVelocity = rb.linearVelocity;
-        }
 
     private void Update()
     {

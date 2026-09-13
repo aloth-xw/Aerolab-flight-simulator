@@ -5,8 +5,10 @@ public class TutorialManager : MonoBehaviour
 {
     [SerializeField] private TutorialStep[] steps;
     [SerializeField] private TMP_Text tutorialText;
-    [SerializeField] private GameObject continuePrompt;
+    [SerializeField] private TMP_Text continuePromptText;
+    [SerializeField] private string defaultContinueMessage = "[Presiona ESPACIO para continuar]";
     [SerializeField] private Rigidbody aircraftRigidbody;
+    [SerializeField] private FlightControls flightControls;
 
     private int currentStep = 0;
     private bool waitingForContinue = false;
@@ -31,19 +33,27 @@ public class TutorialManager : MonoBehaviour
 
         if (step.freezeAircraft)
         {
-            aircraftRigidbody.linearVelocity = Vector3.zero;
-            aircraftRigidbody.angularVelocity = Vector3.zero;
-            aircraftRigidbody.isKinematic = true;
+            FreezeAircraft(true);
         }
 
         if (step.type == TutorialStepType.ShowMessage)
         {
             waitingForContinue = true;
-            continuePrompt.SetActive(true);
+            if (continuePromptText != null)
+            {
+                continuePromptText.text = defaultContinueMessage;
+                continuePromptText.gameObject.SetActive(true);
+            }
         }
-        else if (step.type == TutorialStepType.RequireCheckpoint)
+        else
         {
-            aircraftRigidbody.isKinematic = false;
+            waitingForContinue = false;
+            if (continuePromptText != null) continuePromptText.gameObject.SetActive(false);
+
+            if (step.type == TutorialStepType.RequireCheckpoint)
+            {
+                FreezeAircraft(false);
+            }
         }
     }
 
@@ -52,23 +62,53 @@ public class TutorialManager : MonoBehaviour
         if (waitingForContinue && UnityEngine.InputSystem.Keyboard.current.spaceKey.wasPressedThisFrame)
         {
             waitingForContinue = false;
-            continuePrompt.SetActive(false);
-            aircraftRigidbody.isKinematic = false;
+            if (continuePromptText != null) continuePromptText.gameObject.SetActive(false);
+            
+            FreezeAircraft(false);
             ShowStep(currentStep + 1);
         }
     }
 
-    public void OnCheckpointReached()
-{
-    if (steps[currentStep].type == TutorialStepType.RequireCheckpoint)
+    private void FreezeAircraft(bool freeze)
     {
-        ShowStep(currentStep + 1);
+        if (aircraftRigidbody != null)
+        {
+            if (freeze)
+            {
+                aircraftRigidbody.linearVelocity = Vector3.zero;
+                aircraftRigidbody.angularVelocity = Vector3.zero;
+                aircraftRigidbody.isKinematic = true;
+            }
+            else
+            {
+                aircraftRigidbody.isKinematic = false;
+                aircraftRigidbody.linearVelocity = aircraftRigidbody.transform.forward * 50f; // restaura velocidad de vuelo
+            }
+        }
+
+        if (flightControls != null)
+        {
+            if (freeze) flightControls.ResetControllers();
+            flightControls.enabled = !freeze;
+            if (!freeze) flightControls.ResetControllers();
+        }
     }
-}
+
+    public void OnCheckpointReached()
+    {
+        {
+            if (currentStep < steps.Length && steps[currentStep].type == TutorialStepType.RequireCheckpoint)
+            {
+                ShowStep(currentStep + 1);
+            }
+        }
+    }
 
     private void EndTutorial()
     {
         tutorialText.gameObject.SetActive(false);
+        if (continuePromptText != null) continuePromptText.gameObject.SetActive(false);
+        FreezeAircraft(false);
     }
 
 }

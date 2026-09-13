@@ -152,7 +152,6 @@ public class FlightControls : MonoBehaviour
             float excess = currentAoA - aoaSafetyThreshold;
             pitchTorque -= excess * aoaSafetyStrength;
         }
-
         this.pitchTorque = pitchTorque;
     }
 
@@ -210,6 +209,13 @@ public class FlightControls : MonoBehaviour
 
         float rateError = targetYawRate - currentYawRate;
         yawTorque = yawRatePID.Update(rateError, deltaTime);
+    }
+
+    public void ResetControllers()
+    {
+        pitchRatePID.Reset();
+        rollRatePID.Reset();
+        yawRatePID.Reset();
     }
     
 
