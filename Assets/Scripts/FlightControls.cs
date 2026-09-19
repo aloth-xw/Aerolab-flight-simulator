@@ -217,6 +217,31 @@ public class FlightControls : MonoBehaviour
         rollRatePID.Reset();
         yawRatePID.Reset();
     }
+
+    public void ResetThrottle()
+    {
+        throttle = 0f;
+        if (engine != null)
+        {
+            engine.SetThrottle(0f);
+        }
+    }
+
+    private void Start()
+    {
+        Rigidbody rb = GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+        }
+
+        throttle = 0f;
+        if (engine != null)
+        {
+            engine.SetThrottle(0f);
+        }
+    }
     
 
     private void Update()
