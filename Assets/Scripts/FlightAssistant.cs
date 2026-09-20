@@ -9,6 +9,7 @@ public class FlightAssistant : MonoBehaviour
 
     [SerializeField] private float stallAoAThreshold = 15f;
     [SerializeField] private float preStallMargin = 4f;
+    [SerializeField] private float minSpeedForStallWarning = 15f;
 
     [SerializeField] private float terrainWarningAltitude = 100f;
     [SerializeField] private float dangerousDescentRate = -15f;
@@ -17,6 +18,8 @@ public class FlightAssistant : MonoBehaviour
 
     [SerializeField] private float messageCooldown = 2f;
     [SerializeField] private float warningConfirmTime = 1f;
+
+    [SerializeField] private LandingGear landingGear;
 
 
     private float idleTimer = 0f;
@@ -53,9 +56,11 @@ public class FlightAssistant : MonoBehaviour
         float verticalSpeed = physicsBody.GetVelocity().y;
         float throttle = aircraft.GetThrottle();
 
+        bool isGrounded = landingGear != null && landingGear.IsGrounded;
+
        float altitudeAGL = Mathf.Infinity;
 
-        if (Physics.Raycast(transform.position,Vector3.down,out RaycastHit hit,10000f))
+        if (Physics.Raycast(aircraft.transform.position,Vector3.down,out RaycastHit hit,10000f))
             {
                 altitudeAGL = hit.distance;
             }
@@ -65,22 +70,23 @@ public class FlightAssistant : MonoBehaviour
             return "¡ALTURA BAJA! ¡SUBE EL MORRO!";
         }
 
-        if (aoa >= stallAoAThreshold)
+        if (!isGrounded && aoa >= stallAoAThreshold)
         {
             return "¡PÉRDIDA! ¡BAJA EL MORRO!";
         }
 
-        if (aoa >= stallAoAThreshold - preStallMargin)
+        if (!isGrounded && aoa >= stallAoAThreshold - preStallMargin)
         {
             return "Ángulo de ataque alto";
         }
+
 
         if (speed > speedThreshold)
         {
             return "Velocidad excesiva";
         }
 
-        if (throttle < 0.05f && altitude > 20f)
+        if (!isGrounded && throttle < 0.05f && altitude > 20f)
         {
             idleTimer += Time.deltaTime;
             if (idleTimer >= warningConfirmTime)

@@ -14,7 +14,7 @@ public class LandingGear : MonoBehaviour
     [SerializeField] private GearPoint leftMainGear;
     [SerializeField] private GearPoint rightMainGear;
 
-    [SerializeField] private float suspensionRestLength = 1.5f;
+    [SerializeField] private float suspensionRestLength = 3f;
     [SerializeField] private float suspensionStrength = 8000f;
     [SerializeField] private float suspensionDamping = 800f;
     [SerializeField] private LayerMask groundLayer;
